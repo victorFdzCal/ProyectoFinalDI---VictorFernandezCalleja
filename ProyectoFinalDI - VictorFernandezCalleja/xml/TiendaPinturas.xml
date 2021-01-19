@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Almacen>
+	<Proveedor NombreProveedor="Grupo Lalnara">
+		<Marca NombreMarca="Titanlux">
+			<Articulo Referencia="ACU_MAT_GRI" Descripcion="Titanlux Acualux Mate Interior-Exterior" Color="Gris" Precio="20.0" FechaEntrada="19-01-2021" Stock="50"></Articulo>
+			<Articulo Referencia="ACU_MAT_AZU" Descripcion="Titanlux Acualux Mate Interior-Exterior" Color="Azul Turquesa" Precio="20.0" FechaEntrada="18-01-2021" Stock="100"></Articulo>
+			<Articulo Referencia="ACU_MAT_FUC" Descripcion="Titanlux Acualux Mate Interior-Exterior" Color="Fucsia" Precio="20.0" FechaEntrada="10-01-2021" Stock="25"/>
+			<Articulo Referencia="TIT_PISC" Descripcion="Titanlux Titan Piscinas Agua" Color="Azul" Precio="25.0" FechaEntrada="19-01-2021" Stock="50"/>
+		</Marca>
+		<Marca NombreMarca="Procolor">
+			<Articulo Referencia="PRO_COM_BLA" Descripcion="Procolor Comodin" Color="Blanco 9010" Precio="15.0" FechaEntrada="19-01-2021" Stock="100"/>
+			<Articulo Referencia="ACU_MAT_GRI" Descripcion="Acualux Mate Interior-Exterior" Color="Negro 811" Precio="20.0" FechaEntrada="19-01-2021" Stock="50" />
+			<Articulo Referencia="ACU_MAT_GRI" Descripcion="Acualux Mate Interior-Exterior" Color="Negro 811" Precio="20.0" FechaEntrada="19-01-2021" Stock="50" />
+			<Articulo />
+		</Marca>
+	</Proveedor>
+	<Proveedor NombreProveedor="Paigun">
+		
+	</Proveedor>
+	<Proveedor NombreProveedor="Alper">
+		
+	</Proveedor>
+</Almacen> 
