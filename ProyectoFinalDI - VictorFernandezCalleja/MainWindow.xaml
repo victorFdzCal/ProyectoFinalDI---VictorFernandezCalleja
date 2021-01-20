@@ -7,6 +7,16 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Grid.Row="0">
+            <Button x:Name="btnInicio" Content="INICIO" Height="25" Margin="10" Width="75"/>
+            <Button x:Name="btnNuevo" Content="NUEVO" Height="25" Margin="10" Width="75" Click="btnNuevo_Click"/>
+            <Button x:Name="btnMostrar" Content="MOSTRAR" Height="25" Margin="10" Width="75"/>
+            <Button x:Name="btnSalir" Content="SALIR" Height="25" Margin="10" Width="75"/>
+        </StackPanel>
+        <Frame x:Name="frame" Grid.Row="1" Width="750"/>
     </Grid>
 </Window>

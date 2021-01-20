@@ -1,0 +1,30 @@
+﻿<Page x:Class="ProyectoFinalDI___VictorFernandezCalleja.Vistas.NewProduct"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:ProyectoFinalDI___VictorFernandezCalleja.Vistas"
+      mc:Ignorable="d" 
+      d:DesignHeight="400" d:DesignWidth="750"
+      Title="NewProduct">
+
+    <StackPanel HorizontalAlignment="Center">
+        <TextBlock x:Name="titulo" Text="TITULO" HorizontalAlignment="Center"/>
+        <TextBlock Text="Referencia:" HorizontalAlignment="Center" Margin="0,20,0,0"/>
+        <TextBox x:Name="txtReferencia" Width="200" Margin="0,0,0,10"/>
+        <TextBlock Text="Descripcion" HorizontalAlignment="Center"/>
+        <TextBox x:Name="txtDescripcion" Margin="0,0,0,10"/>
+        <TextBlock Text="Color" HorizontalAlignment="Center"/>
+        <ComboBox x:Name="cmbColor" Margin="0,0,0,10"/>
+        <TextBlock Text="Precio:" HorizontalAlignment="Center"/>
+        <TextBox x:Name="txtPrecio" Margin="0,0,0,10"/>
+        <TextBlock Text="Fecha Entrada" HorizontalAlignment="Center"/>
+        <TextBox x:Name="txtFechaEntrada" Margin="0,0,0,10"/>
+        <TextBlock Text="Stock" HorizontalAlignment="Center"/>
+        <TextBox x:Name="txtStock" Margin="0,0,0,10"/>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+            <Button x:Name="btnAceptar" Content="ACEPTAR" Margin="10" Width="75"/>
+            <Button x:Name="btnLimpiar" Content="LIMPIAR" Margin="10" Width="75"/>
+        </StackPanel>
+    </StackPanel>
+</Page>
