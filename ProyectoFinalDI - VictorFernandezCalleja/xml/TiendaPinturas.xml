@@ -31,4 +31,13 @@
 			<Articulo Referencia="LUX_INT_GRI" Descripcion="Luxens Pintura Interior Gris" Color="Gris" Precio="20.0" FechaEntrada="19-01-2021" Stock="50"/>
 		</Marca>
 	</Proveedor>
-</Almacen> 
+	<Colores>
+		<Color IdColor="Rojo"/>
+		<Color IdColor="Verde"/>
+		<Color IdColor="Azul"/>
+		<Color IdColor="Amarillo"/>
+		<Color IdColor="Blanco"/>
+		<Color IdColor="Negro"/>
+		<Color IdColor="Gris"/>
+	</Colores>
+</Almacen>

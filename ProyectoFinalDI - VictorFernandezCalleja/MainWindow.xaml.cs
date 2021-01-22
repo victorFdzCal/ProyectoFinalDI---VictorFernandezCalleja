@@ -1,4 +1,5 @@
-﻿using ProyectoFinalDI___VictorFernandezCalleja.Vistas;
+﻿using ProyectoFinalDI___VictorFernandezCalleja.Clases;
+using ProyectoFinalDI___VictorFernandezCalleja.Vistas;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,16 +23,28 @@ namespace ProyectoFinalDI___VictorFernandezCalleja
     public partial class MainWindow : Window
     {
         public static Frame navigationFrame;
-        NewProduct newProduct
+        NewProduct newProduct;
+        public ProductoHandler productoHandler;
         public MainWindow()
         {
-            navigationFrame = frame;
             InitializeComponent();
+            navigationFrame = frame;
+            productoHandler = new ProductoHandler();
         }
 
         private void btnNuevo_Click(object sender, RoutedEventArgs e)
         {
             navigationFrame.NavigationService.Navigate(new NewProduct("NUEVO PRODUCTO"));
+        }
+
+        private void btnSalir_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+
+        private void btnMostrar_Click(object sender, RoutedEventArgs e)
+        {
+            navigationFrame.NavigationService.Navigate(new ShowProducts(productoHandler));
         }
     }
 }

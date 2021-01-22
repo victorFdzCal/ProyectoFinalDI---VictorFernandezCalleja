@@ -8,6 +8,8 @@ namespace ProyectoFinalDI___VictorFernandezCalleja.Clases
 {
     public class Producto
     {
+        public String proveedor { get; set; }
+        public String marca { get; set; }
         public String referencia { get; set; }
         public String descripcion { get; set; }
         public String color { get; set; }
@@ -18,6 +20,11 @@ namespace ProyectoFinalDI___VictorFernandezCalleja.Clases
         public Producto()
         {
 
+        }
+
+        public String GetAllValues()
+        {
+            return proveedor + " " + marca + " " + referencia +  " " + descripcion + " " + color + " " + precio + " " + fechaEntrada + " " + stock + " ";
         }
     }
 }

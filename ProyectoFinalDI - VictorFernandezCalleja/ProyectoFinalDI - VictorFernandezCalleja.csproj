@@ -58,6 +58,9 @@
     <Compile Include="Vistas\NewProduct.xaml.cs">
       <DependentUpon>NewProduct.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Vistas\ShowProducts.xaml.cs">
+      <DependentUpon>ShowProducts.xaml</DependentUpon>
+    </Compile>
     <Compile Include="xml\XMLHandler.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -74,6 +77,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Vistas\NewProduct.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Vistas\ShowProducts.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
