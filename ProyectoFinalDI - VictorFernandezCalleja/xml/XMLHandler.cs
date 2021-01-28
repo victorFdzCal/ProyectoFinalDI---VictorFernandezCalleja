@@ -25,9 +25,12 @@ namespace ProyectoFinalDI___VictorFernandezCalleja.xml
             ObservableCollection<Producto> listaProductos = new ObservableCollection<Producto>();
             CargarXML();
             var listaProductosXML = xml.Root.Elements("Proveedor").Elements("Marca").Elements("Articulo");
-            foreach(XElement productoXML in listaProductosXML)
+                
+            foreach (XElement productoXML in listaProductosXML)
             {
                 producto = new Producto();
+                producto.proveedor = productoXML.Parent.Parent.Attribute("NombreProveedor").Value;
+                producto.marca = productoXML.Parent.Attribute("NombreMarca").Value;
                 producto.referencia = productoXML.Attribute("Referencia").Value;
                 producto.descripcion = productoXML.Attribute("Descripcion").Value;
                 producto.color = productoXML.Attribute("Color").Value;

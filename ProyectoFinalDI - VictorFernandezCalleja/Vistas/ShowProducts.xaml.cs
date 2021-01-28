@@ -25,6 +25,7 @@ namespace ProyectoFinalDI___VictorFernandezCalleja.Vistas
     {
         private XDocument xml = XDocument.Load("../../xml/TiendaPinturas.xml");
         ProductoHandler productoHandler = new ProductoHandler();
+        NewProduct editarProducto;
         public ShowProducts(ProductoHandler productoHandler)
         {
             this.productoHandler = productoHandler;
@@ -54,7 +55,7 @@ namespace ProyectoFinalDI___VictorFernandezCalleja.Vistas
 
         private void btnEditar_Click(object sender, RoutedEventArgs e)
         {
-
+            editarProducto = new NewProduct("Editar Producto");
         }
 
         private void btnBorrar_Click(object sender, RoutedEventArgs e)
@@ -72,17 +73,24 @@ namespace ProyectoFinalDI___VictorFernandezCalleja.Vistas
             {
                 UpdateProductList();
             }
-            ObservableCollection<Producto> listaFiltrada = new ObservableCollection<Producto>();
-            foreach(Producto producto in productoHandler.listaProductos)
+            else
             {
-                if (producto.proveedor.Equals((string)cmbProveedor.SelectedItem))
+                ObservableCollection<Producto> listaFiltrada = new ObservableCollection<Producto>();
+                foreach (Producto producto in productoHandler.listaProductos)
                 {
-                    listaFiltrada.Add(producto);
+
+                    if (producto.proveedor.Equals((String)cmbProveedor.SelectedItem))
+                    {
+                        listaFiltrada.Add(producto);
+                    }
                 }
+                myDataGrid.ItemsSource = listaFiltrada;
+                myDataGrid.DataContext = listaFiltrada;
+                myDataGrid.Items.Refresh();
             }
-            myDataGrid.ItemsSource = productoHandler.listaProductos;
-            myDataGrid.DataContext = productoHandler.listaProductos;
-            myDataGrid.Items.Refresh();
+            
+            
+            
         }
 
         private void txtBusqueda_TextChanged(object sender, TextChangedEventArgs e)
