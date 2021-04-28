@@ -1,6 +1,9 @@
 ﻿using ProyectoFinalDI___VictorFernandezCalleja.Clases;
+using ProyectoFinalDI___VictorFernandezCalleja.Images;
+using ProyectoFinalDI___VictorFernandezCalleja.xml;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,18 +26,12 @@ namespace ProyectoFinalDI___VictorFernandezCalleja.Vistas
     public partial class NewProduct : Page
     {
         private XDocument xml = XDocument.Load("../../xml/TiendaPinturas.xml");
+        private ProductoHandler productoHandler;
+        private bool modify;
+        private Producto producto;
         public NewProduct()
         {
             InitializeComponent();
-        }
-
-        public NewProduct(String titulo)
-        {
-            InitializeComponent();
-            this.titulo.Text = titulo;
-            InitColorCombo();
-            InitMarcaCombo();
-            InitProveedorCombo();
         }
 
         private void InitProveedorCombo()
@@ -65,17 +62,36 @@ namespace ProyectoFinalDI___VictorFernandezCalleja.Vistas
             }
         }
 
-        public NewProduct(String titulo, Producto producto)
+        public NewProduct(String titulo, Producto producto, ProductoHandler productoHandler)
         {
+            this.producto = producto;
+            this.productoHandler = productoHandler;
             InitializeComponent();
             InitColorCombo();
             InitMarcaCombo();
             InitProveedorCombo();
+            this.cmbColor.SelectedItem = producto.color;
+            this.cmbMarca.SelectedItem = producto.marca;
+            this.cmbProveedor.SelectedItem = producto.proveedor;
             this.titulo.Text = titulo;
             this.txtReferencia.Text = producto.referencia;
+            this.txtReferencia.IsReadOnly = true;
             this.txtDescripcion.Text = producto.descripcion;
             this.txtFechaEntrada.Text = producto.fechaEntrada.ToString();
             this.txtPrecio.Text = producto.precio.ToString();
+            this.txtStock.Text = producto.stock.ToString();
+            modify = true;
+        }
+
+        public NewProduct(String titulo, ProductoHandler productoHandler)
+        {
+            this.productoHandler = productoHandler;
+            InitializeComponent();
+            this.titulo.Text = titulo;
+            InitColorCombo();
+            InitMarcaCombo();
+            InitProveedorCombo();
+            modify = false;
         }
 
         private void btnLimpiar_Click(object sender, RoutedEventArgs e)
@@ -85,6 +101,98 @@ namespace ProyectoFinalDI___VictorFernandezCalleja.Vistas
             this.txtFechaEntrada.Text = "";
             this.txtPrecio.Text = "";
             this.txtStock.Text = "";
+        }
+
+        private void btnAceptar_Click(object sender, RoutedEventArgs e)
+        {
+            Producto producto = new Producto();
+            if (cmbProveedor.IsVisible)
+            {
+                producto.proveedor = cmbProveedor.SelectedItem.ToString();
+            }
+            else
+            {
+                producto.proveedor = txtProveedor.Text;
+            }
+            if (cmbMarca.IsVisible)
+            {
+                producto.marca = cmbMarca.SelectedItem.ToString();
+            }
+            else
+            {
+                producto.marca = txtMarca.Text;
+            }
+            producto.referencia = txtReferencia.Text;
+            producto.descripcion = txtDescripcion.Text;
+            producto.precio = float.Parse(txtPrecio.Text, CultureInfo.InvariantCulture.NumberFormat);
+            producto.fechaEntrada = DateTime.Parse(txtFechaEntrada.Text);
+            producto.stock = int.Parse(txtStock.Text);
+            producto.color = cmbColor.SelectedItem.ToString();
+            if (txtReferencia.Text.Length > 0)
+            {
+                if(modify)
+                {
+                    //productoHandler.ModificarProducto(producto, pos);
+                    XMLHandler.ModificarProducto(producto);
+                    productoHandler.AgregarProducto(producto);
+                }
+                else
+                {
+                    productoHandler.AgregarProducto(producto);
+                    XMLHandler.AddProduct(producto);
+                }
+            }
+        }
+
+        private void addImageBtn_Click(object sender, RoutedEventArgs e)
+        {
+            BitmapImage bitmapImage = ImageHandler.GetBitmapFromFile();
+            if(bitmapImage != null)
+            {
+                myImage.Source = bitmapImage;
+            }
+        }
+
+        private void addProveedor_Checked(object sender, RoutedEventArgs e)
+        {
+            if (cmbProveedor.IsVisible)
+            {
+                cmbProveedor.Visibility = Visibility.Hidden;
+                txtProveedor.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                cmbProveedor.Visibility = Visibility.Visible;
+                txtProveedor.Visibility = Visibility.Hidden;
+            }
+        }
+
+        private void addMarca_Checked(object sender, RoutedEventArgs e)
+        {
+            if (cmbMarca.IsVisible)
+            {
+                cmbMarca.Visibility = Visibility.Hidden;
+                txtMarca.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                cmbMarca.Visibility = Visibility.Visible;
+                txtMarca.Visibility = Visibility.Hidden;
+            }
+        }
+
+        private void addColor_Checked(object sender, RoutedEventArgs e)
+        {
+            if (cmbColor.IsVisible)
+            {
+                cmbColor.Visibility = Visibility.Hidden;
+                txtColor.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                cmbColor.Visibility = Visibility.Visible;
+                txtColor.Visibility = Visibility.Hidden;
+            }
         }
     }
 }

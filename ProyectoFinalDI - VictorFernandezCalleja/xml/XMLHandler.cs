@@ -13,11 +13,32 @@ namespace ProyectoFinalDI___VictorFernandezCalleja.xml
     {
         private static XDocument xml;
         private static Producto producto;
+        private static XElement xmlProveedor;
+        private static XElement xmlMarca;
 
         public static void CargarXML()
         {
             xml = XDocument.Load("../../xml/TiendaPinturas.xml");
 
+        }
+
+        public static void GuardarXML()
+        {
+            xml.Save("../../xml/TiendaPinturas.xml");
+        }
+
+        public static void EliminarProducto(String productRef)
+        {
+            CargarXML();
+            var listaReferenciasXML = xml.Root.Elements("Proveedor").Elements("Marca").Elements("Articulo").Attributes("Referencia");
+            foreach(XAttribute referencia in listaReferenciasXML){
+                if(productRef == referencia.Value)
+                {
+                    referencia.Parent.Remove();
+                    break;
+                }
+            }
+            GuardarXML();
         }
 
         public static ObservableCollection<Producto> CargarProductos()
@@ -41,5 +62,94 @@ namespace ProyectoFinalDI___VictorFernandezCalleja.xml
             }
             return listaProductos;
         }
+
+        public static void AddProduct(Producto p)
+        {
+            producto = p;
+            CargarXML();
+            AddProveedor();
+            AddMarca();
+            CreateProduct();
+            GuardarXML();
+        }
+
+        private static void CreateProduct()
+        {
+            XElement xmlProduct = new XElement("Articulo", new XAttribute("Referencia", producto.referencia), 
+                new XAttribute("Descripcion",producto.descripcion), 
+                new XAttribute("Color",producto.color),
+                new XAttribute("Precio",producto.precio), 
+                new XAttribute("FechaEntrada",producto.fechaEntrada), 
+                new XAttribute("Stock",producto.stock));
+            xmlMarca.Add(xmlProduct);
+        }
+
+        //<Articulo Referencia="BRU_INT_NEG" Descripcion="Bruguer Pintura Interior Negro" Color="Negro" Precio="20.0" FechaEntrada="19-01-2021" Stock="50" />
+        public static void ModificarProducto(Producto p)
+        {
+            CargarXML();
+            var listaReferenciasXML = xml.Root.Elements("Proveedor").Elements("Marca").Elements("Articulo").Attributes("Referencia");
+            foreach (XAttribute referencia in listaReferenciasXML)
+            {
+                if (p.referencia == referencia.Value)
+                {
+                    referencia.Parent.Remove();
+                    break;
+                }
+            }
+            GuardarXML();
+            AddProduct(p);
+        }
+
+        private static void AddProveedor()
+        {
+            var listaCategorias = xml.Root.Elements("Proveedor").Attributes("NombreProveedor");
+            bool isNewCategory = true;
+            foreach (XAttribute categoria in listaCategorias)
+            {
+                if (categoria.Value.Equals(producto.proveedor))
+                {
+                    xmlProveedor = categoria.Parent;
+                    isNewCategory = false;
+                    break;
+                }
+                else
+                {
+                    xmlProveedor = new XElement("Proveedor", new XAttribute("NombreProveedor", producto.proveedor));
+                    xmlMarca = new XElement("Marca", new XAttribute("NombreMarca", producto.marca));
+                    isNewCategory = true;
+                }
+            }
+            if (isNewCategory)
+            {
+                xmlProveedor.Add(xmlMarca);
+                xml.Root.Add(xmlProveedor);
+            }
+        }
+
+        private static void AddMarca()
+        {
+            bool isNewBrand = true;
+            foreach (XAttribute marca in xmlProveedor.Elements().Attributes("NombreMarca"))
+            {
+                if (marca.Value.Equals(producto.marca))
+                {
+                    xmlMarca = marca.Parent;
+                    isNewBrand = false;
+                    break;
+                }
+                else
+                {
+                    xmlMarca = new XElement("Marca", new XAttribute("NombreMarca", producto.marca));
+                    isNewBrand = true;
+                }
+            }
+            if (isNewBrand)
+            {
+                xmlProveedor.Add(xmlMarca);
+            }
+        }
+
     }
+
 }

@@ -1,43 +1,45 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Almacen>
-	<Proveedor NombreProveedor="Grupo Lalnara">
-		<Marca NombreMarca="Titanlux">
-			<Articulo Referencia="TIT_INT_GRI" Descripcion="Titanlux Pintura Interior Gris" Color="Gris" Precio="20.0" FechaEntrada="19-01-2021" Stock="50"></Articulo>
-			<Articulo Referencia="TIT_INT_AZU" Descripcion="Titanlux Pintura Interior Azul" Color="Azul" Precio="20.0" FechaEntrada="18-01-2021" Stock="100"></Articulo>
-			<Articulo Referencia="TIT_EXT_FUC" Descripcion="Titanlux Pintura Exterior Fucsia" Color="Fucsia" Precio="20.0" FechaEntrada="10-01-2021" Stock="25"/>
-			<Articulo Referencia="TIT_EXT_ROJ" Descripcion="Titanlux Pintura Exterior Rojo" Color="Rojo" Precio="25.0" FechaEntrada="19-01-2021" Stock="50"/>
-		</Marca>
-		<Marca NombreMarca="Procolor">
-			<Articulo Referencia="PRO_INT_BLA" Descripcion="Procolor Pintura Interior Blanco" Color="Blanco" Precio="15.0" FechaEntrada="19-01-2021" Stock="100"/>
-			<Articulo Referencia="PRO_INT_NEG" Descripcion="Procolor Pintura Interior Negro" Color="Negro" Precio="20.0" FechaEntrada="19-01-2021" Stock="50" />
-			<Articulo Referencia="PRO_EXT_AZU" Descripcion="Procolor Pintura Exterior Azul" Color="Azul" Precio="20.0" FechaEntrada="19-01-2021" Stock="150" />
-			<Articulo Referencia="PRO_EXT_VER" Descripcion="Procolor Pintura Exterior Verde" Color="Verde" Precio="20.0" FechaEntrada="19-01-2021" Stock="250"/>
-		</Marca>
-	</Proveedor>
-	<Proveedor NombreProveedor="Paigun">
-		<Marca NombreMarca="Reveton">
-			<Articulo Referencia="REV_INT_NEG" Descripcion="Reveton Pintura Interior Negro" Color="Negro" Precio="20.0" FechaEntrada="19-01-2021" Stock="50"/>
-			<Articulo Referencia="REV_INT_BLA" Descripcion="Reveton Pintura Interior Blanco" Color="Blanco" Precio="20.0" FechaEntrada="19-01-2021" Stock="50"/>
-		</Marca>
-		<Marca NombreMarca="alp">
-			<Articulo Referencia="ALP_PLA_MAT" Descripcion="alp Pintura Interior Blanco" Color="Blanco" Precio="25.0" FechaEntrada="20-01-2021" Stock="250"/>
-		</Marca>
-	</Proveedor>
-	<Proveedor NombreProveedor="Alper">
-		<Marca NombreMarca="Bruguer">
-			<Articulo Referencia="BRU_INT_NEG" Descripcion="Bruguer Pintura Interior Negro" Color="Negro" Precio="20.0" FechaEntrada="19-01-2021" Stock="50"/>
-		</Marca>
-		<Marca NombreMarca="Luxens">
-			<Articulo Referencia="LUX_INT_GRI" Descripcion="Luxens Pintura Interior Gris" Color="Gris" Precio="20.0" FechaEntrada="19-01-2021" Stock="50"/>
-		</Marca>
-	</Proveedor>
-	<Colores>
-		<Color IdColor="Rojo"/>
-		<Color IdColor="Verde"/>
-		<Color IdColor="Azul"/>
-		<Color IdColor="Amarillo"/>
-		<Color IdColor="Blanco"/>
-		<Color IdColor="Negro"/>
-		<Color IdColor="Gris"/>
-	</Colores>
+  <Proveedor NombreProveedor="Grupo Lalnara">
+    <Marca NombreMarca="Titanlux" />
+    <Marca NombreMarca="Procolor">
+      <Articulo Referencia="PRO_INT_NEG" Descripcion="Procolor Pintura Interior Negro" Color="Negro" Precio="20.0" FechaEntrada="19-01-2021" Stock="50" />
+      <Articulo Referencia="PRO_EXT_AZU" Descripcion="Procolor Pintura Exterior Azul" Color="Azul" Precio="20.0" FechaEntrada="19-01-2021" Stock="150" />
+      <Articulo Referencia="PRO_EXT_VER" Descripcion="Procolor Pintura Exterior Verde" Color="Verde" Precio="20.0" FechaEntrada="19-01-2021" Stock="250" />
+    </Marca>
+  </Proveedor>
+  <Proveedor NombreProveedor="Paigun">
+    <Marca NombreMarca="Reveton">
+      <Articulo Referencia="REV_INT_NEG" Descripcion="Reveton Pintura Interior Negro" Color="Negro" Precio="20.0" FechaEntrada="19-01-2021" Stock="50" />
+      <Articulo Referencia="REV_INT_BLA" Descripcion="Reveton Pintura Interior Blanco" Color="Blanco" Precio="20.0" FechaEntrada="19-01-2021" Stock="50" />
+    </Marca>
+    <Marca NombreMarca="alp">
+      <Articulo Referencia="ALP_PLA_MAT" Descripcion="alp Pintura Interior Blanco" Color="Blanco" Precio="25.0" FechaEntrada="20-01-2021" Stock="250" />
+    </Marca>
+  </Proveedor>
+  <Proveedor NombreProveedor="Alper">
+    <Marca NombreMarca="Bruguer">
+      <Articulo Referencia="BRU_INT_NEG" Descripcion="Bruguer Pintura Interior Negro" Color="Negro" Precio="20.0" FechaEntrada="19-01-2021" Stock="50" />
+    </Marca>
+    <Marca NombreMarca="Luxens">
+      <Articulo Referencia="LUX_INT_GRI" Descripcion="Luxens Pintura Interior Gris" Color="Gris" Precio="20.0" FechaEntrada="19-01-2021" Stock="50" />
+    </Marca>
+  </Proveedor>
+  <Colores>
+    <Color IdColor="Rojo" />
+    <Color IdColor="Verde" />
+    <Color IdColor="Azul" />
+    <Color IdColor="Amarillo" />
+    <Color IdColor="Blanco" />
+    <Color IdColor="Negro" />
+    <Color IdColor="Gris" />
+  </Colores>
+  <Proveedor NombreProveedor="Proveedor1">
+    <Marca NombreMarca="Marca1">
+      <Articulo Referencia="REF1" Descripcion="Pruba 1 - Azul" Color="Azul" Precio="22" FechaEntrada="2021-11-28T00:00:00" Stock="50" />
+    </Marca>
+  </Proveedor>
+  <Proveedor NombreProveedor="Proveedor2">
+    <Marca NombreMarca="Marca2" />
+  </Proveedor>
 </Almacen>

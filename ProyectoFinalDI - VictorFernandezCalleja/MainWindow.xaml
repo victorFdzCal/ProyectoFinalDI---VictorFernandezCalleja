@@ -17,6 +17,6 @@
             <Button x:Name="btnMostrar" Content="MOSTRAR" Height="25" Margin="10" Width="75" Click="btnMostrar_Click"/>
             <Button x:Name="btnSalir" Content="SALIR" Height="25" Margin="10" Width="75" Click="btnSalir_Click"/>
         </StackPanel>
-        <Frame x:Name="frame" Grid.Row="1" Width="750"/>
+        <Frame x:Name="frame" Grid.Row="1" Width="750" NavigationUIVisibility="Hidden"/>
     </Grid>
 </Window>

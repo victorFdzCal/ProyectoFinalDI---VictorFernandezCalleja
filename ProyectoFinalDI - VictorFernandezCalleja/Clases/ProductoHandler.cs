@@ -27,5 +27,10 @@ namespace ProyectoFinalDI___VictorFernandezCalleja.Clases
         {
             listaProductos.Add(producto);
         }
+
+        public void BorrarProducto(Producto producto)
+        {
+            listaProductos.Remove(producto);
+        }
     }
 }

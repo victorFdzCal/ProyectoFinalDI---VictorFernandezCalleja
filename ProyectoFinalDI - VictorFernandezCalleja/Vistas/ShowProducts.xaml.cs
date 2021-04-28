@@ -1,4 +1,5 @@
 ﻿using ProyectoFinalDI___VictorFernandezCalleja.Clases;
+using ProyectoFinalDI___VictorFernandezCalleja.xml;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -25,7 +26,6 @@ namespace ProyectoFinalDI___VictorFernandezCalleja.Vistas
     {
         private XDocument xml = XDocument.Load("../../xml/TiendaPinturas.xml");
         ProductoHandler productoHandler = new ProductoHandler();
-        NewProduct editarProducto;
         public ShowProducts(ProductoHandler productoHandler)
         {
             this.productoHandler = productoHandler;
@@ -47,7 +47,6 @@ namespace ProyectoFinalDI___VictorFernandezCalleja.Vistas
 
         private void UpdateProductList()
         {
-            txtBusqueda.Text = "";
             myDataGrid.ItemsSource = productoHandler.listaProductos;
             myDataGrid.DataContext = productoHandler.listaProductos;
             myDataGrid.Items.Refresh();
@@ -55,12 +54,17 @@ namespace ProyectoFinalDI___VictorFernandezCalleja.Vistas
 
         private void btnEditar_Click(object sender, RoutedEventArgs e)
         {
-            editarProducto = new NewProduct("Editar Producto");
+            Producto producto = (Producto)myDataGrid.SelectedItem;
+            MainWindow.navigationFrame.NavigationService.Navigate(new NewProduct("EDITAR PRODUCTO",producto,productoHandler));
+            productoHandler.BorrarProducto(producto);
         }
 
         private void btnBorrar_Click(object sender, RoutedEventArgs e)
         {
-
+            Producto producto = (Producto)myDataGrid.SelectedItem;
+            XMLHandler.EliminarProducto(producto.referencia);
+            productoHandler.BorrarProducto(producto);
+            UpdateProductList();
         }
         private void btnActualizar_Click(object sender, RoutedEventArgs e)
         {
@@ -69,8 +73,9 @@ namespace ProyectoFinalDI___VictorFernandezCalleja.Vistas
 
         private void cmbProveedor_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if(cmbProveedor.SelectedIndex == 0)
+            if (cmbProveedor.SelectedIndex == 0)
             {
+                txtBusqueda.Text = "";
                 UpdateProductList();
             }
             else
@@ -88,9 +93,6 @@ namespace ProyectoFinalDI___VictorFernandezCalleja.Vistas
                 myDataGrid.DataContext = listaFiltrada;
                 myDataGrid.Items.Refresh();
             }
-            
-            
-            
         }
 
         private void txtBusqueda_TextChanged(object sender, TextChangedEventArgs e)

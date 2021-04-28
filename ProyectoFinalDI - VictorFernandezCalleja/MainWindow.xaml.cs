@@ -34,7 +34,7 @@ namespace ProyectoFinalDI___VictorFernandezCalleja
 
         private void btnNuevo_Click(object sender, RoutedEventArgs e)
         {
-            navigationFrame.NavigationService.Navigate(new NewProduct("NUEVO PRODUCTO"));
+            navigationFrame.NavigationService.Navigate(new NewProduct("NUEVO PRODUCTO",productoHandler));
         }
 
         private void btnSalir_Click(object sender, RoutedEventArgs e)
