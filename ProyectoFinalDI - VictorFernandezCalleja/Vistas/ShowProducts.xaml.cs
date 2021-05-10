@@ -26,6 +26,7 @@ namespace ProyectoFinalDI___VictorFernandezCalleja.Vistas
     {
         private XDocument xml = XDocument.Load("../../xml/TiendaPinturas.xml");
         ProductoHandler productoHandler = new ProductoHandler();
+        ObservableCollection<Producto> listaFiltrada;
         public ShowProducts(ProductoHandler productoHandler)
         {
             this.productoHandler = productoHandler;
@@ -47,6 +48,10 @@ namespace ProyectoFinalDI___VictorFernandezCalleja.Vistas
 
         private void UpdateProductList()
         {
+            txtBusqueda.Text = "";
+            cmbProveedor.SelectedIndex = 0;
+            productoHandler.UpdateProductList();
+            listaFiltrada = new ObservableCollection<Producto>(productoHandler.listaProductos);
             myDataGrid.ItemsSource = productoHandler.listaProductos;
             myDataGrid.DataContext = productoHandler.listaProductos;
             myDataGrid.Items.Refresh();
@@ -69,6 +74,7 @@ namespace ProyectoFinalDI___VictorFernandezCalleja.Vistas
         private void btnActualizar_Click(object sender, RoutedEventArgs e)
         {
             UpdateProductList();
+            
         }
 
         private void cmbProveedor_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -80,7 +86,8 @@ namespace ProyectoFinalDI___VictorFernandezCalleja.Vistas
             }
             else
             {
-                ObservableCollection<Producto> listaFiltrada = new ObservableCollection<Producto>();
+                listaFiltrada.Clear();
+                //listaFiltrada = new ObservableCollection<Producto>();
                 foreach (Producto producto in productoHandler.listaProductos)
                 {
 
@@ -98,13 +105,16 @@ namespace ProyectoFinalDI___VictorFernandezCalleja.Vistas
         private void txtBusqueda_TextChanged(object sender, TextChangedEventArgs e)
         {
             ObservableCollection<Producto> nuevaListaFiltrada = new ObservableCollection<Producto>();
-            foreach(Producto producto in nuevaListaFiltrada)
+            foreach(Producto producto in listaFiltrada)
             {
                 if (producto.GetAllValues().Contains(txtBusqueda.Text))
                 {
                     nuevaListaFiltrada.Add(producto);
                 }
             }
+            myDataGrid.DataContext = nuevaListaFiltrada;
+            myDataGrid.ItemsSource = nuevaListaFiltrada;
+
         }
     }
 }
