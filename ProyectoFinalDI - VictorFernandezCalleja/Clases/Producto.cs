@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Media.Imaging;
 
 namespace ProyectoFinalDI___VictorFernandezCalleja.Clases
 {
@@ -16,6 +17,8 @@ namespace ProyectoFinalDI___VictorFernandezCalleja.Clases
         public float precio { get; set; }
         public DateTime fechaEntrada { get; set; }
         public int stock { get; set; }
+        public BitmapImage imagen { get; set; }
+        public bool publish { get; set; }
 
         public Producto()
         {

@@ -1,4 +1,6 @@
 ﻿using ProyectoFinalDI___VictorFernandezCalleja.Clases;
+using ProyectoFinalDI___VictorFernandezCalleja.ProjectDB.MySQLData.RemoteProductsDataSet;
+using ProyectoFinalDI___VictorFernandezCalleja.ProjectDB.SqlData.LocalImages;
 using ProyectoFinalDI___VictorFernandezCalleja.xml;
 using System;
 using System.Collections.Generic;
@@ -51,7 +53,7 @@ namespace ProyectoFinalDI___VictorFernandezCalleja.Vistas
             txtBusqueda.Text = "";
             cmbProveedor.SelectedIndex = 0;
             productoHandler.UpdateProductList();
-            listaFiltrada = new ObservableCollection<Producto>(productoHandler.listaProductos);
+            //listaFiltrada = new ObservableCollection<Producto>(productoHandler.listaFinal);
             myDataGrid.ItemsSource = productoHandler.listaProductos;
             myDataGrid.DataContext = productoHandler.listaProductos;
             myDataGrid.Items.Refresh();
@@ -69,6 +71,7 @@ namespace ProyectoFinalDI___VictorFernandezCalleja.Vistas
             Producto producto = (Producto)myDataGrid.SelectedItem;
             XMLHandler.EliminarProducto(producto.referencia);
             productoHandler.BorrarProducto(producto);
+            LocalImageDBHandler.RemoveDataFromDB(producto.referencia);
             UpdateProductList();
         }
         private void btnActualizar_Click(object sender, RoutedEventArgs e)
@@ -115,6 +118,31 @@ namespace ProyectoFinalDI___VictorFernandezCalleja.Vistas
             myDataGrid.DataContext = nuevaListaFiltrada;
             myDataGrid.ItemsSource = nuevaListaFiltrada;
 
+        }
+
+        private void btnPublicar_Click(object sender, RoutedEventArgs e)
+        {
+            Producto producto = (Producto)myDataGrid.SelectedItem;
+            if (producto.publish)
+            {
+                bool borradoOK = MySQLDBHandler.DeleteDataFromDB(producto.referencia);
+                if (borradoOK)
+                {
+                    producto.publish = false;
+                    XMLHandler.ModificarProducto(producto);
+                    UpdateProductList();
+                }
+            }
+            else
+            {
+                bool insercionOK = MySQLDBHandler.AddDataToDB(producto);
+                if (insercionOK)
+                {
+                    producto.publish = true;
+                    XMLHandler.ModificarProducto(producto);
+                    UpdateProductList();
+                }
+            }
         }
     }
 }

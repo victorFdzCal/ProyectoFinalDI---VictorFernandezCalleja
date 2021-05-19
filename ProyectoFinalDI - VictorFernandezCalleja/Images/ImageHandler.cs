@@ -32,7 +32,7 @@ namespace ProyectoFinalDI___VictorFernandezCalleja.Images
             return null;
         }
 
-        /*public static byte[] EncodeImage(BitmapImage bitmapSource)
+        public static byte[] EncodeImage(BitmapImage bitmapSource)
         {
             byte[] imageByte;
             JpegBitmapEncoder encoder = new JpegBitmapEncoder();
@@ -43,11 +43,55 @@ namespace ProyectoFinalDI___VictorFernandezCalleja.Images
                 encoder.Save(ms);
                 imageByte = ms.ToArray();
             }
-        }*/
+            return imageByte;
+        }
 
-        public static void AddImage(String productRef)
+        public static BitmapImage DecodeImage(byte[] imageData)
         {
-            //LocalImageDBHandler.AddData_toDB(productRef);
+            if (imageData == null || imageData.Length == 0) return null;
+            var image = new BitmapImage();
+            using (var mem = new MemoryStream(imageData))
+            {
+                mem.Position = 0;
+                image.BeginInit();
+                image.CreateOptions = BitmapCreateOptions.PreservePixelFormat;
+                image.CacheOption = BitmapCacheOption.OnLoad;
+                image.UriSource = null;
+                image.StreamSource = mem;
+                image.EndInit();
+            }
+            image.Freeze();
+            return image;
+        }
+
+        public static void AddImage(String productRef, BitmapImage bitmapImage)
+        {
+            LocalImageDBHandler.AddData_toDB(productRef, EncodeImage(bitmapImage));
+        }
+
+        public static BitmapImage LoadDefaultImage()
+        {
+            BitmapImage bitmapImage = new BitmapImage();
+            bitmapImage.BeginInit();
+            bitmapImage.UriSource = new Uri("/Images/imagenDefecto.png", UriKind.Relative);
+            bitmapImage.EndInit();
+            return bitmapImage;
+        }
+
+        public static BitmapImage LoadImage(string productRef)
+        {
+            byte[] imageData = LocalImageDBHandler.GetDataFromDB(productRef);
+            BitmapImage bitmapImage = new BitmapImage();
+            if(imageData != null)
+            {
+                bitmapImage = DecodeImage(imageData);
+            }
+            return bitmapImage;
+        }
+
+        public static void ModifyImage(string referencia, BitmapImage source)
+        {
+            LocalImageDBHandler.UpdateDataFromDB(referencia, EncodeImage(source));
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using ProyectoFinalDI___VictorFernandezCalleja.Clases;
 using ProyectoFinalDI___VictorFernandezCalleja.Images;
+using ProyectoFinalDI___VictorFernandezCalleja.ProjectDB.MySQLData.RemoteProductsDataSet;
 using ProyectoFinalDI___VictorFernandezCalleja.xml;
 using System;
 using System.Collections.Generic;
@@ -29,6 +30,8 @@ namespace ProyectoFinalDI___VictorFernandezCalleja.Vistas
         private ProductoHandler productoHandler;
         private bool modify;
         private Producto producto;
+        public bool nuevaImagen = false;
+        public bool publish = false;
         public NewProduct()
         {
             InitializeComponent();
@@ -80,7 +83,9 @@ namespace ProyectoFinalDI___VictorFernandezCalleja.Vistas
             this.txtFechaEntrada.Text = producto.fechaEntrada.ToString();
             this.txtPrecio.Text = producto.precio.ToString();
             this.txtStock.Text = producto.stock.ToString();
+            myImage.Source = ImageHandler.LoadImage(producto.referencia);
             modify = true;
+            publish = producto.publish;
         }
 
         public NewProduct(String titulo, ProductoHandler productoHandler)
@@ -91,6 +96,7 @@ namespace ProyectoFinalDI___VictorFernandezCalleja.Vistas
             InitColorCombo();
             InitMarcaCombo();
             InitProveedorCombo();
+            myImage.Source = ImageHandler.LoadDefaultImage();
             modify = false;
         }
 
@@ -128,6 +134,7 @@ namespace ProyectoFinalDI___VictorFernandezCalleja.Vistas
             producto.fechaEntrada = DateTime.Parse(txtFechaEntrada.Text);
             producto.stock = int.Parse(txtStock.Text);
             producto.color = cmbColor.SelectedItem.ToString();
+            producto.publish = publish;
             if (txtReferencia.Text.Length > 0)
             {
                 if(modify)
@@ -135,11 +142,27 @@ namespace ProyectoFinalDI___VictorFernandezCalleja.Vistas
                     //productoHandler.ModificarProducto(producto, pos);
                     XMLHandler.ModificarProducto(producto);
                     productoHandler.AgregarProducto(producto);
+                    if (nuevaImagen)
+                    {
+                        ImageHandler.ModifyImage(producto.referencia, (BitmapImage)myImage.Source);
+                    }
+                    if (publish)
+                    {
+                        bool modificadoOK = MySQLDBHandler.ModifyDataDB(producto);
+                        if (modificadoOK)
+                        {
+                            MainWindow.navigationFrame.NavigationService.Navigate(new ShowProducts(productoHandler));
+                        }
+                    }
                 }
                 else
                 {
-                    productoHandler.AgregarProducto(producto);
+                    //productoHandler.AgregarProducto(producto);
                     XMLHandler.AddProduct(producto);
+                    if (nuevaImagen)
+                    {
+                        ImageHandler.AddImage(producto.referencia, (BitmapImage)myImage.Source);
+                    }
                 }
             }
         }
@@ -150,6 +173,7 @@ namespace ProyectoFinalDI___VictorFernandezCalleja.Vistas
             if(bitmapImage != null)
             {
                 myImage.Source = bitmapImage;
+                nuevaImagen = true;
             }
         }
 

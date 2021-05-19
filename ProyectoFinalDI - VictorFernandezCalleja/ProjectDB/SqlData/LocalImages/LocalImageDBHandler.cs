@@ -19,5 +19,39 @@ namespace ProyectoFinalDI___VictorFernandezCalleja.ProjectDB.SqlData.LocalImages
             imagesAdapter.Update(dataset);
 
         }
+
+        public static byte[] GetDataFromDB(string idImage)
+        {
+            byte[] imageData = null;
+            try
+            {
+                imageData = imagesAdapter.GetImage(idImage).ElementAt(0).productImage;
+            }
+            catch(Exception e)
+            {
+                
+            }
+            return imageData;
+        }
+
+        public static void UpdateDataFromDB(string idImage, byte[] productImage)
+        {
+            byte [] dataImage = GetDataFromDB(idImage);
+            if(dataImage == null)
+            {
+                AddData_toDB(idImage, productImage);
+            }
+            else
+            {
+                imagesAdapter.UpdateData(productImage, idImage);
+                imagesAdapter.Update(dataset);
+            }
+        }
+
+        public static void RemoveDataFromDB(string idImage)
+        {
+            imagesAdapter.Delete(idImage);
+            imagesAdapter.Update(dataset);
+        }
     }
 }

@@ -58,6 +58,15 @@ namespace ProyectoFinalDI___VictorFernandezCalleja.xml
                 producto.precio = float.Parse(productoXML.Attribute("Precio").Value);
                 producto.fechaEntrada = DateTime.Parse(productoXML.Attribute("FechaEntrada").Value);
                 producto.stock = int.Parse(productoXML.Attribute("Stock").Value);
+                string textoPublish = productoXML.Attribute("Publicado").Value;
+                if(textoPublish == "true")
+                {
+                    producto.publish = true;
+                }else if(textoPublish == "false")
+                {
+                    producto.publish = false;
+                }
+                
                 listaProductos.Add(producto);
             }
             return listaProductos;
@@ -80,7 +89,8 @@ namespace ProyectoFinalDI___VictorFernandezCalleja.xml
                 new XAttribute("Color",producto.color),
                 new XAttribute("Precio",producto.precio), 
                 new XAttribute("FechaEntrada",producto.fechaEntrada), 
-                new XAttribute("Stock",producto.stock));
+                new XAttribute("Stock",producto.stock),
+                new XAttribute("Publicado",producto.publish));
             xmlMarca.Add(xmlProduct);
         }
 
