@@ -19,7 +19,7 @@ namespace ProyectoFinalDI___VictorFernandezCalleja.ProjectDB.MySQLData.RemotePro
 
         public static bool DeleteDataFromDB(string referencia)
         {
-            int borrado = dataAdapter.BorrarProductoPublicado(referencia);
+            int borrado = dataAdapter.BorrarDatos(referencia);
             if(borrado > 0)
             {
                 dataAdapter.Update(dataset);

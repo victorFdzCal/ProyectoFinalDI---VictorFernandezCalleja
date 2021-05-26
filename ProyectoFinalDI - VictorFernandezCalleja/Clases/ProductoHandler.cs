@@ -28,18 +28,8 @@ namespace ProyectoFinalDI___VictorFernandezCalleja.Clases
         {
             this.listaProductos = XMLHandler.CargarProductos();
 
-            //ObservableCollection<Producto> listaProductosMySQL = MySQLDBHandler.GetListaProductos();
-
             foreach (Producto producto in listaProductos)
             {
-                /*foreach(Producto producto1 in listaProductosMySQL)
-                {
-                    if (producto.referencia == producto1.referencia)
-                    {
-                        producto.publish = true;
-                        //this.listaFinal.Add(producto1);
-                    }
-                }*/
                 producto.imagen = ImageHandler.LoadImage(producto.referencia);
             }
         }

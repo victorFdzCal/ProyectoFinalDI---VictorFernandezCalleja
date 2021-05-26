@@ -18,7 +18,7 @@
   </Proveedor>
   <Proveedor NombreProveedor="Alper">
     <Marca NombreMarca="Bruguer">
-      <Articulo Referencia="BRU_INT_NEG" Descripcion="Bruguer Pintura Interior Negro" Color="Negro" Precio="20.0" FechaEntrada="19-01-2021" Stock="50" Publicado="false" />
+      <Articulo Referencia="BRU_INT_NEG" Descripcion="Bruguer Pintura Interior Negro" Color="Negro" Precio="200" FechaEntrada="2021-01-19T00:00:00" Stock="50" Publicado="false" />
     </Marca>
     <Marca NombreMarca="Luxens">
       <Articulo Referencia="LUX_INT_GRI" Descripcion="Luxens Pintura Interior Gris" Color="Gris" Precio="200" FechaEntrada="2021-01-19T00:00:00" Stock="50" Publicado="false" />

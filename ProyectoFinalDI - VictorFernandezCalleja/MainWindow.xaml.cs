@@ -30,6 +30,7 @@ namespace ProyectoFinalDI___VictorFernandezCalleja
             InitializeComponent();
             navigationFrame = frame;
             productoHandler = new ProductoHandler();
+            navigationFrame.NavigationService.Navigate(new PaginaInicio());
         }
 
         private void btnNuevo_Click(object sender, RoutedEventArgs e)
@@ -45,6 +46,21 @@ namespace ProyectoFinalDI___VictorFernandezCalleja
         private void btnMostrar_Click(object sender, RoutedEventArgs e)
         {
             navigationFrame.NavigationService.Navigate(new ShowProducts(productoHandler));
+        }
+
+        private void btnFacturas_Click(object sender, RoutedEventArgs e)
+        {
+            navigationFrame.NavigationService.Navigate(new ConsultaFactuas());
+        }
+
+        private void btnCrearFacturas_Click(object sender, RoutedEventArgs e)
+        {
+            navigationFrame.NavigationService.Navigate(new NuevaFactura(productoHandler));
+        }
+
+        private void btnInicio_Click(object sender, RoutedEventArgs e)
+        {
+            navigationFrame.NavigationService.Navigate(new PaginaInicio());
         }
     }
 }

@@ -25,9 +25,13 @@ namespace ProyectoFinalDI___VictorFernandezCalleja.Clases
 
         }
 
+        public override string ToString()
+        {
+            return descripcion;
+        }
         public String GetAllValues()
         {
-            return proveedor + " " + marca + " " + referencia +  " " + descripcion + " " + color + " " + precio + " " + fechaEntrada + " " + stock + " ";
+            return descripcion;
         }
     }
 }

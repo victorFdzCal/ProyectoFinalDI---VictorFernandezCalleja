@@ -4,12 +4,12 @@
     <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
       <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
         <Connections>
-          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="projectdbConnectionString1" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="projectdbConnectionString1 (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.ProyectoFinalDI___VictorFernandezCalleja.Properties.Settings.GlobalReference.Default.projectdbConnectionString1" Provider="MySql.Data.MySqlClient" />
+          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="projectdbConnectionString2" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="projectdbConnectionString2 (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.ProyectoFinalDI___VictorFernandezCalleja.Properties.Settings.GlobalReference.Default.projectdbConnectionString2" Provider="MySql.Data.MySqlClient" />
         </Connections>
         <Tables>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="publishvfTableAdapter" GeneratorDataComponentClassName="publishvfTableAdapter" Name="publishvf" UserDataComponentName="publishvfTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="projectdbConnectionString1 (Settings)" DbObjectName="projectdb.publishvf" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="projectdbConnectionString2 (Settings)" DbObjectName="projectdb.publishvf" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
                 <DeleteCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="false">
                     <CommandText>DELETE FROM `publishvf` WHERE ((`referencia` = @p1) AND ((@p2 = 1 AND `proveedor` IS NULL) OR (`proveedor` = @p3)) AND ((@p4 = 1 AND `marca` IS NULL) OR (`marca` = @p5)) AND ((@p6 = 1 AND `descripcion` IS NULL) OR (`descripcion` = @p7)) AND ((@p8 = 1 AND `color` IS NULL) OR (`color` = @p9)) AND ((@p10 = 1 AND `precio` IS NULL) OR (`precio` = @p11)) AND ((@p12 = 1 AND `fechaEntrada` IS NULL) OR (`fechaEntrada` = @p13)) AND ((@p14 = 1 AND `stock` IS NULL) OR (`stock` = @p15)))</CommandText>
@@ -99,7 +99,7 @@
               <Mapping SourceColumn="imagen" DataSetColumn="imagen" />
             </Mappings>
             <Sources>
-              <DbSource ConnectionRef="projectdbConnectionString1 (Settings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="BorrarProductoPublicado" Modifier="Public" Name="BorrarProductoPublicado" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy" UserSourceName="BorrarProductoPublicado">
+              <DbSource ConnectionRef="projectdbConnectionString2 (Settings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="BorrarDatos" Modifier="Public" Name="BorrarDatos" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy" UserSourceName="BorrarDatos">
                 <DeleteCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>DELETE FROM publishvf
@@ -110,7 +110,7 @@ WHERE        (referencia = @p1)</CommandText>
                   </DbCommand>
                 </DeleteCommand>
               </DbSource>
-              <DbSource ConnectionRef="projectdbConnectionString1 (Settings)" DbObjectName="projectdb.publishvf" DbObjectType="Table" GenerateMethods="Get" GenerateShortCommands="true" GeneratorGetMethodName="CogerDatos" GetMethodModifier="Public" GetMethodName="CogerDatos" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="CogerDatos" UserSourceName="CogerDatos">
+              <DbSource ConnectionRef="projectdbConnectionString2 (Settings)" DbObjectName="projectdb.publishvf" DbObjectType="Table" GenerateMethods="Get" GenerateShortCommands="true" GeneratorGetMethodName="CogerDatos" GetMethodModifier="Public" GetMethodName="CogerDatos" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="CogerDatos" UserSourceName="CogerDatos">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>SELECT `referencia`, `proveedor`, `marca`, `descripcion`, `color`, `precio`, `fechaEntrada`, `stock`, `imagen` FROM `publishvf`</CommandText>
@@ -118,25 +118,17 @@ WHERE        (referencia = @p1)</CommandText>
                   </DbCommand>
                 </SelectCommand>
               </DbSource>
-              <DbSource ConnectionRef="projectdbConnectionString1 (Settings)" DbObjectName="projectdb.publishvf" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="FillBy" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetMySQLData" GeneratorSourceName="FillBy" GetMethodModifier="Public" GetMethodName="GetMySQLData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetMySQLData" UserSourceName="FillBy">
-                <SelectCommand>
-                  <DbCommand CommandType="Text" ModifiedByUser="true">
-                    <CommandText>SELECT `referencia`, `proveedor`, `marca`, `descripcion`, `color`, `precio`, `fechaEntrada`, `stock`, `imagen` FROM `publishvf`</CommandText>
-                    <Parameters />
-                  </DbCommand>
-                </SelectCommand>
-              </DbSource>
-              <DbSource ConnectionRef="projectdbConnectionString1 (Settings)" DbObjectName="projectdb.publishvf" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="FillBy1" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetProducto" GeneratorSourceName="FillBy1" GetMethodModifier="Public" GetMethodName="GetProducto" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetProducto" UserSourceName="FillBy1">
+              <DbSource ConnectionRef="projectdbConnectionString2 (Settings)" DbObjectName="projectdb.publishvf" DbObjectType="Table" GenerateMethods="Get" GenerateShortCommands="true" GeneratorGetMethodName="GetProducto" GetMethodModifier="Public" GetMethodName="GetProducto" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetProducto" UserSourceName="GetProducto">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>SELECT `referencia`, `proveedor`, `marca`, `descripcion`, `color`, `precio`, `fechaEntrada`, `stock`, `imagen` FROM `publishvf` WHERE referencia = @referencia</CommandText>
                     <Parameters>
-                      <Parameter AllowDbNull="false" AutogeneratedName="referencia" ColumnName="referencia" DataSourceName="projectdb.publishvf" DataTypeServer="varchar(10)(10)" DbType="String" Direction="Input" ParameterName="@referencia" Precision="0" ProviderType="VarChar" Scale="0" Size="10" SourceColumn="referencia" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="referencia" ColumnName="referencia" DataSourceName="projectdb.publishvf" DataTypeServer="varchar(15)(15)" DbType="String" Direction="Input" ParameterName="@referencia" Precision="0" ProviderType="VarChar" Scale="0" Size="15" SourceColumn="referencia" SourceColumnNullMapping="false" SourceVersion="Current" />
                     </Parameters>
                   </DbCommand>
                 </SelectCommand>
               </DbSource>
-              <DbSource ConnectionRef="projectdbConnectionString1 (Settings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="ModificarDatos" Modifier="Public" Name="ModificarDatos" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy1" UserSourceName="ModificarDatos">
+              <DbSource ConnectionRef="projectdbConnectionString2 (Settings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="ModifyData" Modifier="Public" Name="ModifyData" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy1" UserSourceName="ModifyData">
                 <UpdateCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>UPDATE       publishvf
@@ -145,26 +137,7 @@ WHERE        (referencia = @p1)</CommandText>
                     <Parameters>
                       <Parameter AllowDbNull="true" AutogeneratedName="p2" ColumnName="proveedor" DataSourceName="projectdb.publishvf" DataTypeServer="varchar(45)(45)" DbType="String" Direction="Input" ParameterName="@p2" Precision="0" ProviderType="VarChar" Scale="0" Size="45" SourceColumn="proveedor" SourceColumnNullMapping="false" SourceVersion="Current" />
                       <Parameter AllowDbNull="true" AutogeneratedName="p3" ColumnName="marca" DataSourceName="projectdb.publishvf" DataTypeServer="varchar(45)(45)" DbType="String" Direction="Input" ParameterName="@p3" Precision="0" ProviderType="VarChar" Scale="0" Size="45" SourceColumn="marca" SourceColumnNullMapping="false" SourceVersion="Current" />
-                      <Parameter AllowDbNull="true" AutogeneratedName="p4" ColumnName="descripcion" DataSourceName="projectdb.publishvf" DataTypeServer="varchar(45)(45)" DbType="String" Direction="Input" ParameterName="@p4" Precision="0" ProviderType="VarChar" Scale="0" Size="45" SourceColumn="descripcion" SourceColumnNullMapping="false" SourceVersion="Current" />
-                      <Parameter AllowDbNull="true" AutogeneratedName="p5" ColumnName="color" DataSourceName="projectdb.publishvf" DataTypeServer="varchar(45)(45)" DbType="String" Direction="Input" ParameterName="@p5" Precision="0" ProviderType="VarChar" Scale="0" Size="45" SourceColumn="color" SourceColumnNullMapping="false" SourceVersion="Current" />
-                      <Parameter AllowDbNull="true" AutogeneratedName="p6" ColumnName="precio" DataSourceName="projectdb.publishvf" DataTypeServer="float" DbType="Decimal" Direction="Input" ParameterName="@p6" Precision="12" ProviderType="Float" Scale="0" Size="0" SourceColumn="precio" SourceColumnNullMapping="false" SourceVersion="Current" />
-                      <Parameter AllowDbNull="true" AutogeneratedName="p7" ColumnName="fechaEntrada" DataSourceName="projectdb.publishvf" DataTypeServer="date" DbType="DateTime" Direction="Input" ParameterName="@p7" Precision="0" ProviderType="Date" Scale="0" Size="0" SourceColumn="fechaEntrada" SourceColumnNullMapping="false" SourceVersion="Current" />
-                      <Parameter AllowDbNull="true" AutogeneratedName="p8" ColumnName="stock" DataSourceName="projectdb.publishvf" DataTypeServer="int(11)" DbType="Int32" Direction="Input" ParameterName="@p8" Precision="0" ProviderType="Int32" Scale="0" Size="0" SourceColumn="stock" SourceColumnNullMapping="false" SourceVersion="Current" />
-                      <Parameter AllowDbNull="false" AutogeneratedName="p1" ColumnName="referencia" DataSourceName="projectdb.publishvf" DataTypeServer="varchar(15)(15)" DbType="String" Direction="Input" ParameterName="@p1" Precision="0" ProviderType="VarChar" Scale="0" Size="15" SourceColumn="referencia" SourceColumnNullMapping="false" SourceVersion="Original" />
-                    </Parameters>
-                  </DbCommand>
-                </UpdateCommand>
-              </DbSource>
-              <DbSource ConnectionRef="projectdbConnectionString1 (Settings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="ModifyData" Modifier="Public" Name="ModifyData" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy2" UserSourceName="ModifyData">
-                <UpdateCommand>
-                  <DbCommand CommandType="Text" ModifiedByUser="true">
-                    <CommandText>UPDATE       publishvf
-SET                proveedor = @p2, marca = @p3, descripcion = @p4, color = @p5, precio = @p6, fechaEntrada = @p7, stock = @p8
-WHERE        (referencia = @p1)</CommandText>
-                    <Parameters>
-                      <Parameter AllowDbNull="true" AutogeneratedName="p2" ColumnName="proveedor" DataSourceName="projectdb.publishvf" DataTypeServer="varchar(45)(45)" DbType="String" Direction="Input" ParameterName="@p2" Precision="0" ProviderType="VarChar" Scale="0" Size="45" SourceColumn="proveedor" SourceColumnNullMapping="false" SourceVersion="Current" />
-                      <Parameter AllowDbNull="true" AutogeneratedName="p3" ColumnName="marca" DataSourceName="projectdb.publishvf" DataTypeServer="varchar(45)(45)" DbType="String" Direction="Input" ParameterName="@p3" Precision="0" ProviderType="VarChar" Scale="0" Size="45" SourceColumn="marca" SourceColumnNullMapping="false" SourceVersion="Current" />
-                      <Parameter AllowDbNull="true" AutogeneratedName="p4" ColumnName="descripcion" DataSourceName="projectdb.publishvf" DataTypeServer="varchar(45)(45)" DbType="String" Direction="Input" ParameterName="@p4" Precision="0" ProviderType="VarChar" Scale="0" Size="45" SourceColumn="descripcion" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="p4" ColumnName="descripcion" DataSourceName="projectdb.publishvf" DataTypeServer="varchar(100)(100)" DbType="String" Direction="Input" ParameterName="@p4" Precision="0" ProviderType="VarChar" Scale="0" Size="100" SourceColumn="descripcion" SourceColumnNullMapping="false" SourceVersion="Current" />
                       <Parameter AllowDbNull="true" AutogeneratedName="p5" ColumnName="color" DataSourceName="projectdb.publishvf" DataTypeServer="varchar(45)(45)" DbType="String" Direction="Input" ParameterName="@p5" Precision="0" ProviderType="VarChar" Scale="0" Size="45" SourceColumn="color" SourceColumnNullMapping="false" SourceVersion="Current" />
                       <Parameter AllowDbNull="true" AutogeneratedName="p6" ColumnName="precio" DataSourceName="projectdb.publishvf" DataTypeServer="float" DbType="Decimal" Direction="Input" ParameterName="@p6" Precision="12" ProviderType="Float" Scale="0" Size="0" SourceColumn="precio" SourceColumnNullMapping="false" SourceVersion="Current" />
                       <Parameter AllowDbNull="true" AutogeneratedName="p7" ColumnName="fechaEntrada" DataSourceName="projectdb.publishvf" DataTypeServer="date" DbType="DateTime" Direction="Input" ParameterName="@p7" Precision="0" ProviderType="Date" Scale="0" Size="0" SourceColumn="fechaEntrada" SourceColumnNullMapping="false" SourceVersion="Current" />
@@ -184,13 +157,13 @@ WHERE        (referencia = @p1)</CommandText>
   <xs:element name="projectdbDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="True" msprop:Generator_DataSetName="projectdbDataSet" msprop:Generator_UserDSName="projectdbDataSet">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element name="publishvf" msprop:Generator_TableClassName="publishvfDataTable" msprop:Generator_TableVarName="tablepublishvf" msprop:Generator_TablePropName="publishvf" msprop:Generator_RowDeletingName="publishvfRowDeleting" msprop:Generator_RowChangingName="publishvfRowChanging" msprop:Generator_RowEvHandlerName="publishvfRowChangeEventHandler" msprop:Generator_RowDeletedName="publishvfRowDeleted" msprop:Generator_UserTableName="publishvf" msprop:Generator_RowChangedName="publishvfRowChanged" msprop:Generator_RowEvArgName="publishvfRowChangeEvent" msprop:Generator_RowClassName="publishvfRow">
+        <xs:element name="publishvf" msprop:Generator_TableClassName="publishvfDataTable" msprop:Generator_TableVarName="tablepublishvf" msprop:Generator_RowChangedName="publishvfRowChanged" msprop:Generator_TablePropName="publishvf" msprop:Generator_RowDeletingName="publishvfRowDeleting" msprop:Generator_RowChangingName="publishvfRowChanging" msprop:Generator_RowEvHandlerName="publishvfRowChangeEventHandler" msprop:Generator_RowDeletedName="publishvfRowDeleted" msprop:Generator_RowClassName="publishvfRow" msprop:Generator_UserTableName="publishvf" msprop:Generator_RowEvArgName="publishvfRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="referencia" msprop:Generator_ColumnVarNameInTable="columnreferencia" msprop:Generator_ColumnPropNameInRow="referencia" msprop:Generator_ColumnPropNameInTable="referenciaColumn" msprop:Generator_UserColumnName="referencia">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
-                    <xs:maxLength value="10" />
+                    <xs:maxLength value="15" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
@@ -211,7 +184,7 @@ WHERE        (referencia = @p1)</CommandText>
               <xs:element name="descripcion" msprop:Generator_ColumnVarNameInTable="columndescripcion" msprop:Generator_ColumnPropNameInRow="descripcion" msprop:Generator_ColumnPropNameInTable="descripcionColumn" msprop:Generator_UserColumnName="descripcion" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
-                    <xs:maxLength value="45" />
+                    <xs:maxLength value="100" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
@@ -231,5 +204,9 @@ WHERE        (referencia = @p1)</CommandText>
         </xs:element>
       </xs:choice>
     </xs:complexType>
+    <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:publishvf" />
+      <xs:field xpath="mstns:referencia" />
+    </xs:unique>
   </xs:element>
 </xs:schema>

@@ -56,5 +56,28 @@ namespace ProyectoFinalDI___VictorFernandezCalleja.Properties {
                 return ((string)(this["projectdbConnectionString1"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\victo\\source\\repos\\P" +
+            "royectoFinalDI - VictorFernandezCalleja\\ProyectoFinalDI - VictorFernandezCalleja" +
+            "\\ProjectDB\\SqlData\\Facturas\\FacturasDB\\FacturasDB.mdf;Integrated Security=True")]
+        public string FacturasDBConnectionString {
+            get {
+                return ((string)(this["FacturasDBConnectionString"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("server=infsalinas.sytes.net;user id=usuario;password=dam1234;port=5306;database=p" +
+            "rojectdb")]
+        public string projectdbConnectionString2 {
+            get {
+                return ((string)(this["projectdbConnectionString2"]));
+            }
+        }
     }
 }
