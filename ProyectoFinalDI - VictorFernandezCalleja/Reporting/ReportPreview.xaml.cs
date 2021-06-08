@@ -23,6 +23,10 @@ namespace ProyectoFinalDI___VictorFernandezCalleja.Reporting
     /// </summary>
     public partial class ReportPreview : Window
     {
+        private static string CurrentPath = Environment.CurrentDirectory;
+        private static string reportRef = "Reporting/InformeNumFacturas.rdlc";
+        private static string reportCif = "Reporting/InformeFacturas.rdlc";
+        private static string reportFechas = "Reporting/InformeFechas.rdlc";
         public ReportPreview()
         {
             InitializeComponent();
@@ -38,7 +42,7 @@ namespace ProyectoFinalDI___VictorFernandezCalleja.Reporting
             {
                 rds.Value = listaFacturas;
 
-                myReportView.LocalReport.ReportPath = "../../Reporting/InformeFacturas.rdlc";
+                myReportView.LocalReport.ReportPath = System.IO.Path.Combine(CurrentPath,reportCif);
                 myReportView.LocalReport.DataSources.Add(rds);
                 myReportView.RefreshReport();
 
@@ -57,10 +61,9 @@ namespace ProyectoFinalDI___VictorFernandezCalleja.Reporting
             {
                 rds.Value = listaFacturas;
 
-                myReportView.LocalReport.ReportPath = "../../Reporting/InformeNumFacturas.rdlc";
+                myReportView.LocalReport.ReportPath = System.IO.Path.Combine(CurrentPath, reportRef);
                 myReportView.LocalReport.DataSources.Add(rds);
                 myReportView.RefreshReport();
-
                 okConsulta = true;
             }
             return okConsulta;
@@ -76,7 +79,7 @@ namespace ProyectoFinalDI___VictorFernandezCalleja.Reporting
             {
                 rds.Value = listaFacturas;
 
-                myReportView.LocalReport.ReportPath = "../../Reporting/InformeFechas.rdlc";
+                myReportView.LocalReport.ReportPath = System.IO.Path.Combine(CurrentPath, reportFechas);
                 myReportView.LocalReport.DataSources.Add(rds);
                 myReportView.RefreshReport();
 
@@ -84,5 +87,8 @@ namespace ProyectoFinalDI___VictorFernandezCalleja.Reporting
             }
             return okConsulta;
         }
+
+        
+      
     }
 }

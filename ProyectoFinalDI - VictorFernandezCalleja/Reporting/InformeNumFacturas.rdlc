@@ -9,13 +9,16 @@
               <Width>3.67219cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>9.73114cm</Width>
+              <Width>7.95843cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>2.16406cm</Width>
+              <Width>1.84656cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>2.13651cm</Width>
+              <Width>2.03068cm</Width>
+            </TablixColumn>
+            <TablixColumn>
+              <Width>2.19604cm</Width>
             </TablixColumn>
           </TablixColumns>
           <TablixRows>
@@ -130,7 +133,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>Precio</Value>
+                              <Value>Precio/Ud.</Value>
                               <Style>
                                 <FontWeight>Bold</FontWeight>
                               </Style>
@@ -140,6 +143,39 @@
                         </Paragraph>
                       </Paragraphs>
                       <rd:DefaultName>Textbox8</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Color>LightGrey</Color>
+                          <Style>Solid</Style>
+                        </Border>
+                        <BackgroundColor>Orange</BackgroundColor>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="Textbox3">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>Precio</Value>
+                              <Style>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>Textbox3</rd:DefaultName>
                       <Style>
                         <Border>
                           <Color>LightGrey</Color>
@@ -258,7 +294,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Fields!precio.Value</Value>
+                              <Value>=FormatCurrency(Fields!precio.Value,2)</Value>
                               <Style />
                             </TextRun>
                           </TextRuns>
@@ -279,12 +315,43 @@
                     </Textbox>
                   </CellContents>
                 </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="Textbox5">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>=FormatCurrency(Fields!precio.Value * Fields!cantidad.Value)</Value>
+                              <Style />
+                            </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>Textbox5</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Color>LightGrey</Color>
+                          <Style>Solid</Style>
+                        </Border>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
               </TablixCells>
             </TablixRow>
           </TablixRows>
         </TablixBody>
         <TablixColumnHierarchy>
           <TablixMembers>
+            <TablixMember />
             <TablixMember />
             <TablixMember />
             <TablixMember />
@@ -421,7 +488,11 @@
                 </Style>
               </TextRun>
               <TextRun>
-                <Value> [Sum((Fields!cantidad.Value * Fields!precio.Value))]</Value>
+                <Value xml:space="preserve"> </Value>
+                <Style />
+              </TextRun>
+              <TextRun>
+                <Value>=FormatCurrency(Sum(Fields!precio.Value * Fields!cantidad.Value))</Value>
                 <Style />
               </TextRun>
             </TextRuns>
@@ -431,7 +502,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox27</rd:DefaultName>
-        <Top>3.01308cm</Top>
+        <Top>3.701cm</Top>
         <Left>0.57563cm</Left>
         <Height>0.6cm</Height>
         <Width>17.7039cm</Width>
@@ -450,7 +521,7 @@
     <Height>3.05209in</Height>
     <Style />
   </Body>
-  <Width>7.51376in</Width>
+  <Width>7.56584in</Width>
   <Page>
     <PageHeader>
       <Height>3.62479cm</Height>

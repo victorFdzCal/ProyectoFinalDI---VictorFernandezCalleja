@@ -2,6 +2,8 @@
 using ProyectoFinalDI___VictorFernandezCalleja.ProjectDB.SqlData.Facturas.FacturasDataSet.FacturasDataSetTableAdapters;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -34,8 +36,16 @@ namespace ProyectoFinalDI___VictorFernandezCalleja.ProjectDB.SqlData.Facturas
 
         public static bool AddCliente(Cliente c)
         {
-            int filas = clienteAdapter.Insert(c.cif, c.nombre, c.direccion);
-            if(filas == 1)
+            int filas;
+            try
+            {
+                filas = clienteAdapter.Insert(c.cif, c.nombre, c.direccion);
+            }
+            catch(Exception e)
+            {
+                return false;
+            }
+            if (filas == 1)
             {
                 clienteAdapter.Update(adapter2);
                 return true;
@@ -44,7 +54,6 @@ namespace ProyectoFinalDI___VictorFernandezCalleja.ProjectDB.SqlData.Facturas
             {
                 return false;
             }
-            
         }
 
         public static void AddProducto(ProductoFactura p)
@@ -66,6 +75,34 @@ namespace ProyectoFinalDI___VictorFernandezCalleja.ProjectDB.SqlData.Facturas
         public static InformeFacturasDataTable GetFacturasFechas(DateTime fechaInicio, DateTime fechaFin)
         {
             return adapter.GetDataFechas(fechaInicio, fechaFin);
+        }
+
+        public static ObservableCollection<Factura> GetAllFacturas()
+        {
+            ObservableCollection<Factura> listaFacturas = new ObservableCollection<Factura>();
+            FacturaDataTable fdt =facturaAdapter.GetFacturas();
+            foreach(DataRow dr in fdt.Rows)
+            {
+                Factura f = new Factura();
+                f.refFactura = dr["refFactura"].ToString();
+                f.cif = dr["cif"].ToString();
+                f.fecha =DateTime.Parse(dr["fecha"].ToString());
+                listaFacturas.Add(f);
+            }
+            return listaFacturas;
+        }
+
+        public static Cliente GetCliente(string cif)
+        {
+            ClienteDataTable dataCliente = clienteAdapter.GetClienteCIF(cif);
+            Cliente cliente = new Cliente();
+            foreach(DataRow dr in dataCliente)
+            {
+                cliente.cif = cif;
+                cliente.nombre = dr["nombre"].ToString();
+                cliente.direccion = dr["direccion"].ToString();
+            }
+            return cliente;
         }
     }
 }

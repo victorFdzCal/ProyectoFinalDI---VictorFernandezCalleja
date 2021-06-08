@@ -7,11 +7,11 @@ using System.Windows;
 // La información general de un ensamblado se controla mediante el siguiente 
 // conjunto de atributos. Cambie estos valores de atributo para modificar la información
 // asociada con un ensamblado.
-[assembly: AssemblyTitle("ProyectoFinalDI - VictorFernandezCalleja")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyTitle("Pinturas Victor")]
+[assembly: AssemblyDescription("Gestión y publicación de productos")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("ProyectoFinalDI - VictorFernandezCalleja")]
+[assembly: AssemblyCompany("VictorDesarrollos")]
+[assembly: AssemblyProduct("Pinturas Victor Gestion")]
 [assembly: AssemblyCopyright("Copyright ©  2021")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

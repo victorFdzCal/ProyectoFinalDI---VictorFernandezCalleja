@@ -4,6 +4,7 @@ using ProyectoFinalDI___VictorFernandezCalleja.ProjectDB.MySQLData.RemoteProduct
 using ProyectoFinalDI___VictorFernandezCalleja.xml;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Globalization;
 using System.Linq;
 using System.Text;
@@ -26,7 +27,7 @@ namespace ProyectoFinalDI___VictorFernandezCalleja.Vistas
     /// </summary>
     public partial class NewProduct : Page
     {
-        private XDocument xml = XDocument.Load("../../xml/TiendaPinturas.xml");
+        private XDocument xml = XMLHandler.ReturnXDocument();
         private ProductoHandler productoHandler;
         private bool modify;
         private Producto producto;
@@ -80,7 +81,7 @@ namespace ProyectoFinalDI___VictorFernandezCalleja.Vistas
             this.txtReferencia.Text = producto.referencia;
             this.txtReferencia.IsReadOnly = true;
             this.txtDescripcion.Text = producto.descripcion;
-            this.txtFechaEntrada.Text = producto.fechaEntrada.ToString();
+            this.txtFechaEntrada.SelectedDate = producto.fechaEntrada;
             this.txtPrecio.Text = producto.precio.ToString();
             this.txtStock.Text = producto.stock.ToString();
             myImage.Source = ImageHandler.LoadImage(producto.referencia);
@@ -111,58 +112,142 @@ namespace ProyectoFinalDI___VictorFernandezCalleja.Vistas
 
         private void btnAceptar_Click(object sender, RoutedEventArgs e)
         {
-            Producto producto = new Producto();
-            if (cmbProveedor.IsVisible)
+            if(txtReferencia.Text == "")
             {
-                producto.proveedor = cmbProveedor.SelectedItem.ToString();
+                MessageBox.Show("Intoduce un número de referencia");
             }
             else
             {
-                producto.proveedor = txtProveedor.Text;
-            }
-            if (cmbMarca.IsVisible)
-            {
-                producto.marca = cmbMarca.SelectedItem.ToString();
-            }
-            else
-            {
-                producto.marca = txtMarca.Text;
-            }
-            producto.referencia = txtReferencia.Text;
-            producto.descripcion = txtDescripcion.Text;
-            producto.precio = float.Parse(txtPrecio.Text, CultureInfo.InvariantCulture.NumberFormat);
-            producto.fechaEntrada = DateTime.Parse(txtFechaEntrada.Text);
-            producto.stock = int.Parse(txtStock.Text);
-            producto.color = cmbColor.SelectedItem.ToString();
-            producto.publish = publish;
-            if (txtReferencia.Text.Length > 0)
-            {
-                if(modify)
+                string refProducto = txtReferencia.Text;
+                ObservableCollection<Producto> listaProductos = XMLHandler.CargarProductos();
+                foreach (Producto p in listaProductos)
                 {
-                    //productoHandler.ModificarProducto(producto, pos);
-                    XMLHandler.ModificarProducto(producto);
-                    productoHandler.AgregarProducto(producto);
-                    if (nuevaImagen)
+                    if (p.referencia.Equals(refProducto) && modify == false)
                     {
-                        ImageHandler.ModifyImage(producto.referencia, (BitmapImage)myImage.Source);
+                        MessageBox.Show("Ya existe un producto con esta referencia");
+                        break;
                     }
-                    if (publish)
-                    {
-                        bool modificadoOK = MySQLDBHandler.ModifyDataDB(producto);
-                        if (modificadoOK)
-                        {
-                            MainWindow.navigationFrame.NavigationService.Navigate(new ShowProducts(productoHandler));
-                        }
-                    }
+                }
+                Producto producto = new Producto();
+                if (cmbProveedor.IsVisible)
+                {
+                    producto.proveedor = cmbProveedor.SelectedItem.ToString();
                 }
                 else
                 {
-                    //productoHandler.AgregarProducto(producto);
-                    XMLHandler.AddProduct(producto);
-                    if (nuevaImagen)
+                    if(txtProveedor.Text == "")
                     {
-                        ImageHandler.AddImage(producto.referencia, (BitmapImage)myImage.Source);
+                        MessageBox.Show("Introduce un proveedor");
                     }
+                    else
+                    {
+                        producto.proveedor = txtProveedor.Text;
+                    }
+                }
+                if (cmbMarca.IsVisible)
+                {
+                    producto.marca = cmbMarca.SelectedItem.ToString();
+                }
+                else
+                {
+                    if(txtMarca.Text == "")
+                    {
+                        MessageBox.Show("Introduce una marca");
+                    }
+                    else
+                    {
+                        producto.marca = txtMarca.Text;
+                    }
+                }
+                producto.referencia = txtReferencia.Text;
+                if(txtDescripcion.Text == "")
+                {
+                    MessageBox.Show("Introduce una descripción");
+                }
+                else
+                {
+                    producto.descripcion = txtDescripcion.Text;
+                }
+                if(txtPrecio.Text == "")
+                {
+                    MessageBox.Show("Introduce un precio");
+                }
+                else
+                {
+                    producto.precio = float.Parse(txtPrecio.Text, NumberFormatInfo.InvariantInfo);
+                }
+                if(txtFechaEntrada.SelectedDate == null)
+                {
+                    MessageBox.Show("Introduce una fecha de entrada");
+                }
+                else
+                {
+                    producto.fechaEntrada = (DateTime)txtFechaEntrada.SelectedDate;
+                }
+                if(txtStock.Text == "")
+                {
+                    MessageBox.Show("Introduce un stock");
+                }
+                else
+                {
+                    producto.stock = int.Parse(txtStock.Text);
+                }
+                if (cmbColor.IsVisible)
+                {
+                    producto.color = cmbColor.SelectedItem.ToString();
+                }
+                else
+                {
+                    if(txtColor.Text == "")
+                    {
+                        MessageBox.Show("Introduce un color");
+                    }
+                    else
+                    {
+                        producto.color = txtColor.Text;
+                    }
+                }
+                producto.publish = publish;
+                if (txtReferencia.Text.Length > 0)
+                {
+                    if (modify)
+                    {
+                        //productoHandler.ModificarProducto(producto, pos);
+                        XMLHandler.ModificarProducto(producto);
+                        productoHandler.AgregarProducto(producto);
+                        if (nuevaImagen)
+                        {
+                            ImageHandler.ModifyImage(producto.referencia, (BitmapImage)myImage.Source);
+                        }
+                        if (publish)
+                        {
+                            bool modificadoOK = MySQLDBHandler.ModifyDataDB(producto);
+                            if (modificadoOK)
+                            {
+
+                            }
+                        }
+                    }
+                    else
+                    {
+                        //productoHandler.AgregarProducto(producto);
+                        XMLHandler.AddProduct(producto);
+                        if (nuevaImagen)
+                        {
+                            ImageHandler.AddImage(producto.referencia, (BitmapImage)myImage.Source);
+                        }
+                    }
+                }
+
+                if (modify)
+                {
+                    MessageBox.Show("Producto modificado correctamente");
+                    MainWindow.navigationFrame.NavigationService.Navigate(new ShowProducts(productoHandler));
+                }
+                else
+                {
+                    MessageBox.Show("Producto creado correctamente");
+                    MainWindow.navigationFrame.NavigationService.Navigate(new PaginaInicio());
                 }
             }
         }

@@ -26,10 +26,8 @@ namespace ProyectoFinalDI___VictorFernandezCalleja.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\victo\\source\\repos\\P" +
-            "royectoFinalDI - VictorFernandezCalleja\\ProyectoFinalDI - VictorFernandezCalleja" +
-            "\\ProjectDB\\SqlData\\LocalImages\\LocalImagesDB\\DB_Local_Images.mdf;Integrated Secu" +
-            "rity=True")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\\ProjectDB\\Sql" +
+            "Data\\LocalImages\\LocalImagesDB\\DB_Local_Images.mdf;Integrated Security=True")]
         public string DB_Local_ImagesConnectionString {
             get {
                 return ((string)(this["DB_Local_ImagesConnectionString"]));
@@ -60,9 +58,8 @@ namespace ProyectoFinalDI___VictorFernandezCalleja.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\victo\\source\\repos\\P" +
-            "royectoFinalDI - VictorFernandezCalleja\\ProyectoFinalDI - VictorFernandezCalleja" +
-            "\\ProjectDB\\SqlData\\Facturas\\FacturasDB\\FacturasDB.mdf;Integrated Security=True")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=|DataDirectory|ProjectDB\\SqlD" +
+            "ata\\Facturas\\FacturasDB\\FacturasDB.mdf;Integrated Security=True")]
         public string FacturasDBConnectionString {
             get {
                 return ((string)(this["FacturasDBConnectionString"]));

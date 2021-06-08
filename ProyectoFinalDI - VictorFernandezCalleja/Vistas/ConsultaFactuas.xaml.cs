@@ -62,45 +62,66 @@ namespace ProyectoFinalDI___VictorFernandezCalleja.Vistas
             ReportPreview reportPreview = new ReportPreview();
             if (cmbConsulta.SelectedItem == "DNI/CIF")
             {
-                string dni = edtDni.Text;
-                bool okConsulta = reportPreview.MostrarInformeUsuario(dni);
-                if (okConsulta)
+                if(edtDni.Text == "")
                 {
-                    reportPreview.Show();
+                    MessageBox.Show("Debes introducir un CIF / DNI");
                 }
                 else
                 {
-                    MessageBox.Show("No existen registros para el cliente indicado");
+                    string dni = edtDni.Text;
+                    bool okConsulta = reportPreview.MostrarInformeUsuario(dni);
+                    if (okConsulta)
+                    {
+                        reportPreview.Show();
+                    }
+                    else
+                    {
+                        MessageBox.Show("No existen registros para el cliente indicado");
+                    }
                 }
+                
             }
             else if (cmbConsulta.SelectedItem == "Fechas")
             {
-                
                 DateTime fechaInicio = (DateTime)dateFechaInicio.SelectedDate;
                 DateTime fechaFin = (DateTime)dateFechaFin.SelectedDate;
-                bool okConsulta = reportPreview.MostrarFacturaFechas(fechaInicio, fechaFin);
-                if (okConsulta)
+                if (fechaInicio == null || fechaFin == null)
                 {
-                    reportPreview.Show();
+                    MessageBox.Show("Introduce una fecha");
                 }
                 else
                 {
-                    MessageBox.Show("No existen registros entre las fechas indicadas");
+                    bool okConsulta = reportPreview.MostrarFacturaFechas(fechaInicio, fechaFin);
+                    if (okConsulta)
+                    {
+                        reportPreview.Show();
+                    }
+                    else
+                    {
+                        MessageBox.Show("No existen registros entre las fechas indicadas");
+                    }
                 }
-
             }
             else if (cmbConsulta.SelectedItem == "Nº de Factura")
             {
                 string numFactura = edtNumFactura.Text;
-                bool okConsulta = reportPreview.MostrarFacturaNumFactura(numFactura);
-                if (okConsulta)
+                if(numFactura == "")
                 {
-                    reportPreview.Show();
+                    MessageBox.Show("Introduce un número de factura");
                 }
                 else
                 {
-                    MessageBox.Show("No existen registros para la factura indicada");
+                    bool okConsulta = reportPreview.MostrarFacturaNumFactura(numFactura);
+                    if (okConsulta)
+                    {
+                        reportPreview.Show();
+                    }
+                    else
+                    {
+                        MessageBox.Show("No existen registros para la factura indicada");
+                    }
                 }
+                
             }
         }
     }

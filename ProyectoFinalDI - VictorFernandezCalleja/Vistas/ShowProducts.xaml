@@ -9,11 +9,11 @@
       Title="ShowProducts">
 
     <StackPanel>
-        <TextBlock Text="MOSTRAR PRODUCTOS"/>
-        <StackPanel Orientation="Horizontal">
-            <TextBlock Text="Proveedor:"/>
-            <ComboBox x:Name="cmbProveedor" Width="200" SelectionChanged="cmbProveedor_SelectionChanged"/>
-            <TextBlock Text="Búsqueda"/>
+        <TextBlock Text="MOSTRAR PRODUCTOS" HorizontalAlignment="Center" FontSize="25" FontWeight="Bold"/>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+            <TextBlock Text="Proveedor:" Margin="10,0"/>
+            <ComboBox x:Name="cmbProveedor" Width="200" SelectionChanged="cmbProveedor_SelectionChanged" Margin="0,0,10,0"/>
+            <TextBlock Text="Búsqueda" Margin="0,0,10,0"/>
             <TextBox x:Name="txtBusqueda" Width="200" TextChanged="txtBusqueda_TextChanged"/>
             <Button x:Name="btnActualizar" Content="ACTUALIZAR" Click="btnActualizar_Click" Margin="10,0"/>
         </StackPanel>

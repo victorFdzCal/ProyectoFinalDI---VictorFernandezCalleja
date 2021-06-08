@@ -32,13 +32,15 @@
                 <RowDefinition/>
                 <RowDefinition/>
                 <RowDefinition/>
+                <RowDefinition/>
             </Grid.RowDefinitions>
-            <TextBlock Text="CIF/DNI" Grid.Row="0" FontSize="15" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="10"/>
-            <TextBlock Text="Nombre" Grid.Row="1" FontSize="15" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="10"/>
-            <TextBlock Text="Dirección" Grid.Row="2" FontSize="15" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="10"/>
-            <TextBox x:Name="edtDNI" Grid.Row="0" Grid.Column="1"  FontSize="15" Margin="10,5"/>
-            <TextBox x:Name="edtNombre" Grid.Row="1" Grid.Column="1" FontSize="15" Margin="10,5"/>
-            <TextBox x:Name="edtDireccion" Grid.Row="2" Grid.Column="1" FontSize="15" Margin="10,5"/>
+            <TextBlock Text="CIF/DNI" Grid.Row="0" FontSize="15" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="10,0"/>
+            <TextBlock Text="Nombre" Grid.Row="1" FontSize="15" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="10,0"/>
+            <TextBlock Text="Dirección" Grid.Row="2" FontSize="15" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="10,0"/>
+            <TextBox x:Name="edtDNI" Grid.Row="0" Grid.Column="1"  FontSize="15" Margin="10,1"/>
+            <TextBox x:Name="edtNombre" Grid.Row="1" Grid.Column="1" FontSize="15" Margin="10,1"/>
+            <TextBox x:Name="edtDireccion" Grid.Row="2" Grid.Column="1" FontSize="15" Margin="10,1"/>
+            <Button x:Name="btnAddCliente" Content="AÑADIR CLIENTE" Grid.Row="3" Grid.ColumnSpan="2" Width="150" Margin="10,2" Click="btnAddCliente_Click"/>
         </Grid>
         <StackPanel Grid.Row="1" Grid.Column="1" VerticalAlignment="Center">
             <TextBlock Text="PRODUCTOS" HorizontalAlignment="Center"/>

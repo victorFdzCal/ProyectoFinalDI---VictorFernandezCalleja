@@ -26,7 +26,7 @@ namespace ProyectoFinalDI___VictorFernandezCalleja.Vistas
     /// </summary>
     public partial class ShowProducts : Page
     {
-        private XDocument xml = XDocument.Load("../../xml/TiendaPinturas.xml");
+        private XDocument xml = XMLHandler.ReturnXDocument();
         ProductoHandler productoHandler = new ProductoHandler();
         ObservableCollection<Producto> listaFiltrada;
         public ShowProducts(ProductoHandler productoHandler)
@@ -53,7 +53,7 @@ namespace ProyectoFinalDI___VictorFernandezCalleja.Vistas
             txtBusqueda.Text = "";
             cmbProveedor.SelectedIndex = 0;
             productoHandler.UpdateProductList();
-            //listaFiltrada = new ObservableCollection<Producto>(productoHandler.listaFinal);
+            listaFiltrada = new ObservableCollection<Producto>(productoHandler.listaProductos);
             myDataGrid.ItemsSource = productoHandler.listaProductos;
             myDataGrid.DataContext = productoHandler.listaProductos;
             myDataGrid.Items.Refresh();
@@ -68,11 +68,16 @@ namespace ProyectoFinalDI___VictorFernandezCalleja.Vistas
 
         private void btnBorrar_Click(object sender, RoutedEventArgs e)
         {
-            Producto producto = (Producto)myDataGrid.SelectedItem;
-            XMLHandler.EliminarProducto(producto.referencia);
-            productoHandler.BorrarProducto(producto);
-            LocalImageDBHandler.RemoveDataFromDB(producto.referencia);
-            UpdateProductList();
+            MessageBoxResult mbr = System.Windows.MessageBox.Show("¿Estás seguro de que quieres eliminar este producto?", "Confirmación de Borrado", MessageBoxButton.YesNo);
+            if(mbr == MessageBoxResult.Yes)
+            {
+                Producto producto = (Producto)myDataGrid.SelectedItem;
+                XMLHandler.EliminarProducto(producto.referencia);
+                productoHandler.BorrarProducto(producto);
+                LocalImageDBHandler.RemoveDataFromDB(producto.referencia);
+                UpdateProductList();
+            }
+            
         }
         private void btnActualizar_Click(object sender, RoutedEventArgs e)
         {
@@ -128,6 +133,7 @@ namespace ProyectoFinalDI___VictorFernandezCalleja.Vistas
                 bool borradoOK = MySQLDBHandler.DeleteDataFromDB(producto.referencia);
                 if (borradoOK)
                 {
+                    MessageBox.Show("Producto borrado de la lista de publicados correctamente");
                     producto.publish = false;
                     XMLHandler.ModificarProducto(producto);
                     UpdateProductList();
@@ -138,6 +144,7 @@ namespace ProyectoFinalDI___VictorFernandezCalleja.Vistas
                 bool insercionOK = MySQLDBHandler.AddDataToDB(producto);
                 if (insercionOK)
                 {
+                    MessageBox.Show("Producto publicado correctamente");
                     producto.publish = true;
                     XMLHandler.ModificarProducto(producto);
                     UpdateProductList();

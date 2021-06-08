@@ -2,6 +2,8 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Globalization;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,20 +13,29 @@ namespace ProyectoFinalDI___VictorFernandezCalleja.xml
 {
     public class XMLHandler
     {
+        private static string XMLpath = Environment.CurrentDirectory;
+        private static string XMLname = "xml/TiendaPinturas.xml";
+        private static string documentoXML = Path.Combine(XMLpath, XMLname);
         private static XDocument xml;
         private static Producto producto;
         private static XElement xmlProveedor;
         private static XElement xmlMarca;
 
+
         public static void CargarXML()
         {
-            xml = XDocument.Load("../../xml/TiendaPinturas.xml");
+            xml = XDocument.Load(documentoXML);
 
         }
 
         public static void GuardarXML()
         {
-            xml.Save("../../xml/TiendaPinturas.xml");
+            xml.Save(documentoXML);
+        }
+
+        public static XDocument ReturnXDocument()
+        {
+            return XDocument.Load(documentoXML);
         }
 
         public static void EliminarProducto(String productRef)
@@ -55,7 +66,7 @@ namespace ProyectoFinalDI___VictorFernandezCalleja.xml
                 producto.referencia = productoXML.Attribute("Referencia").Value;
                 producto.descripcion = productoXML.Attribute("Descripcion").Value;
                 producto.color = productoXML.Attribute("Color").Value;
-                producto.precio = float.Parse(productoXML.Attribute("Precio").Value);
+                producto.precio = float.Parse(productoXML.Attribute("Precio").Value,NumberFormatInfo.InvariantInfo);
                 producto.fechaEntrada = DateTime.Parse(productoXML.Attribute("FechaEntrada").Value);
                 producto.stock = int.Parse(productoXML.Attribute("Stock").Value);
                 string textoPublish = productoXML.Attribute("Publicado").Value;
@@ -95,7 +106,7 @@ namespace ProyectoFinalDI___VictorFernandezCalleja.xml
         }
 
         //<Articulo Referencia="BRU_INT_NEG" Descripcion="Bruguer Pintura Interior Negro" Color="Negro" Precio="20.0" FechaEntrada="19-01-2021" Stock="50" />
-        public static void ModificarProducto(Producto p)
+        public static bool ModificarProducto(Producto p)
         {
             CargarXML();
             var listaReferenciasXML = xml.Root.Elements("Proveedor").Elements("Marca").Elements("Articulo").Attributes("Referencia");
@@ -109,6 +120,7 @@ namespace ProyectoFinalDI___VictorFernandezCalleja.xml
             }
             GuardarXML();
             AddProduct(p);
+            return true;
         }
 
         private static void AddProveedor()

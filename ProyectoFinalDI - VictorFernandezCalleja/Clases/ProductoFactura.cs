@@ -13,6 +13,7 @@ namespace ProyectoFinalDI___VictorFernandezCalleja.Clases
         public float precio { get; set; }
         public string descripcion { get; set; }
         public string refFactura { get; set; }
+        public float precioTotal { get; set; }
 
         public ProductoFactura()
         {

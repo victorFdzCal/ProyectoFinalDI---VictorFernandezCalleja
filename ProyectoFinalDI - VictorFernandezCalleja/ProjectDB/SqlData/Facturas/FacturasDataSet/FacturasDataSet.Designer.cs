@@ -995,6 +995,8 @@ namespace ProyectoFinalDI___VictorFernandezCalleja.ProjectDB.SqlData.Facturas.Fa
             
             private global::System.Data.DataColumn columnrefFactura;
             
+            private global::System.Data.DataColumn columnprecioTotal;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public ProductoFacturaDataTable() {
@@ -1070,6 +1072,14 @@ namespace ProyectoFinalDI___VictorFernandezCalleja.ProjectDB.SqlData.Facturas.Fa
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn precioTotalColumn {
+                get {
+                    return this.columnprecioTotal;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -1105,14 +1115,15 @@ namespace ProyectoFinalDI___VictorFernandezCalleja.ProjectDB.SqlData.Facturas.Fa
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public ProductoFacturaRow AddProductoFacturaRow(string refProducto, int cantidad, double precio, string descripcion, FacturaRow parentFacturaRowByFK_ProductoFactura_Factura) {
+            public ProductoFacturaRow AddProductoFacturaRow(string refProducto, int cantidad, double precio, string descripcion, FacturaRow parentFacturaRowByFK_ProductoFactura_Factura, string precioTotal) {
                 ProductoFacturaRow rowProductoFacturaRow = ((ProductoFacturaRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         refProducto,
                         cantidad,
                         precio,
                         descripcion,
-                        null};
+                        null,
+                        precioTotal};
                 if ((parentFacturaRowByFK_ProductoFactura_Factura != null)) {
                     columnValuesArray[4] = parentFacturaRowByFK_ProductoFactura_Factura[0];
                 }
@@ -1150,6 +1161,7 @@ namespace ProyectoFinalDI___VictorFernandezCalleja.ProjectDB.SqlData.Facturas.Fa
                 this.columnprecio = base.Columns["precio"];
                 this.columndescripcion = base.Columns["descripcion"];
                 this.columnrefFactura = base.Columns["refFactura"];
+                this.columnprecioTotal = base.Columns["precioTotal"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1165,6 +1177,8 @@ namespace ProyectoFinalDI___VictorFernandezCalleja.ProjectDB.SqlData.Facturas.Fa
                 base.Columns.Add(this.columndescripcion);
                 this.columnrefFactura = new global::System.Data.DataColumn("refFactura", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnrefFactura);
+                this.columnprecioTotal = new global::System.Data.DataColumn("precioTotal", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnprecioTotal);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnrefProducto}, true));
                 this.columnrefProducto.AllowDBNull = false;
@@ -1440,14 +1454,6 @@ namespace ProyectoFinalDI___VictorFernandezCalleja.ProjectDB.SqlData.Facturas.Fa
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public InformeFacturasRow FindBycifrefFactura(string cif, string refFactura) {
-                return ((InformeFacturasRow)(this.Rows.Find(new object[] {
-                            cif,
-                            refFactura})));
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public override global::System.Data.DataTable Clone() {
                 InformeFacturasDataTable cln = ((InformeFacturasDataTable)(base.Clone()));
                 cln.InitVars();
@@ -1483,9 +1489,6 @@ namespace ProyectoFinalDI___VictorFernandezCalleja.ProjectDB.SqlData.Facturas.Fa
                 base.Columns.Add(this.columnrefFactura);
                 this.columnfecha = new global::System.Data.DataColumn("fecha", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnfecha);
-                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
-                                this.columncif,
-                                this.columnrefFactura}, true));
                 this.columncif.AllowDBNull = false;
                 this.columncif.MaxLength = 9;
                 this.columnnombre.MaxLength = 50;
@@ -1917,6 +1920,22 @@ namespace ProyectoFinalDI___VictorFernandezCalleja.ProjectDB.SqlData.Facturas.Fa
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public string precioTotal {
+                get {
+                    try {
+                        return ((string)(this[this.tableProductoFactura.precioTotalColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'precioTotal\' de la tabla \'ProductoFactura\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableProductoFactura.precioTotalColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public FacturaRow FacturaRow {
                 get {
                     return ((FacturaRow)(this.GetParentRow(this.Table.ParentRelations["FK_ProductoFactura_Factura"])));
@@ -1972,6 +1991,18 @@ namespace ProyectoFinalDI___VictorFernandezCalleja.ProjectDB.SqlData.Facturas.Fa
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public void SetrefFacturaNull() {
                 this[this.tableProductoFactura.refFacturaColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool IsprecioTotalNull() {
+                return this.IsNull(this.tableProductoFactura.precioTotalColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void SetprecioTotalNull() {
+                this[this.tableProductoFactura.precioTotalColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -2416,15 +2447,21 @@ SELECT cif, nombre, direccion FROM Cliente WHERE (cif = @cif)";
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         private void InitCommandCollection() {
-            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[2];
+            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[3];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
             this._commandCollection[0].CommandText = "SELECT cif, nombre, direccion FROM dbo.Cliente";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[1].Connection = this.Connection;
-            this._commandCollection[1].CommandText = "SELECT cif, nombre, direccion FROM dbo.Cliente";
+            this._commandCollection[1].CommandText = "SELECT        cif, nombre, direccion\r\nFROM            Cliente\r\nWHERE        (cif " +
+                "= @p1)";
             this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@p1", global::System.Data.SqlDbType.VarChar, 9, global::System.Data.ParameterDirection.Input, 0, 0, "cif", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[2] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[2].Connection = this.Connection;
+            this._commandCollection[2].CommandText = "SELECT cif, nombre, direccion FROM dbo.Cliente";
+            this._commandCollection[2].CommandType = global::System.Data.CommandType.Text;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -2455,8 +2492,25 @@ SELECT cif, nombre, direccion FROM Cliente WHERE (cif = @cif)";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
-        public virtual FacturasDataSet.ClienteDataTable GetClientes() {
+        public virtual FacturasDataSet.ClienteDataTable GetClienteCIF(string p1) {
             this.Adapter.SelectCommand = this.CommandCollection[1];
+            if ((p1 == null)) {
+                throw new global::System.ArgumentNullException("p1");
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[0].Value = ((string)(p1));
+            }
+            FacturasDataSet.ClienteDataTable dataTable = new FacturasDataSet.ClienteDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
+        public virtual FacturasDataSet.ClienteDataTable GetClientes() {
+            this.Adapter.SelectCommand = this.CommandCollection[2];
             FacturasDataSet.ClienteDataTable dataTable = new FacturasDataSet.ClienteDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
@@ -3731,11 +3785,9 @@ SELECT refProducto, cantidad, precio, descripcion, refFactura FROM ProductoFactu
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[3];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = @"SELECT DISTINCT Cliente.cif, Cliente.nombre, Cliente.direccion, Factura.refFactura, Factura.fecha
-FROM            Cliente INNER JOIN
-                         Factura ON Cliente.cif = Factura.cif INNER JOIN
-                         ProductoFactura ON Factura.refFactura = ProductoFactura.refFactura
-WHERE        (Cliente.cif = @cif)";
+            this._commandCollection[0].CommandText = "SELECT DISTINCT Cliente.cif, Cliente.nombre, Cliente.direccion, Factura.refFactur" +
+                "a, Factura.fecha\r\nFROM            Cliente INNER JOIN\r\n                         F" +
+                "actura ON Cliente.cif = Factura.cif\r\nWHERE        (Cliente.cif = @cif)";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@cif", global::System.Data.SqlDbType.VarChar, 9, global::System.Data.ParameterDirection.Input, 0, 0, "cif", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[1] = new global::System.Data.SqlClient.SqlCommand();

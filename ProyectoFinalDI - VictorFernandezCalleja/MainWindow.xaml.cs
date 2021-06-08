@@ -9,6 +9,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
+using System.Windows.Forms;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
@@ -40,7 +41,12 @@ namespace ProyectoFinalDI___VictorFernandezCalleja
 
         private void btnSalir_Click(object sender, RoutedEventArgs e)
         {
-            this.Close();
+            MessageBoxResult mbr = System.Windows.MessageBox.Show("¿Estás seguro de que quieres salir de la aplicación?", "Salir", MessageBoxButton.YesNo);
+            if(mbr == MessageBoxResult.Yes)
+            {
+                this.Close();
+            }
+            
         }
 
         private void btnMostrar_Click(object sender, RoutedEventArgs e)
@@ -61,6 +67,11 @@ namespace ProyectoFinalDI___VictorFernandezCalleja
         private void btnInicio_Click(object sender, RoutedEventArgs e)
         {
             navigationFrame.NavigationService.Navigate(new PaginaInicio());
+        }
+
+        private void btnAyuda_Click(object sender, RoutedEventArgs e)
+        {
+            Help.ShowHelp(null, "HelpFiles/Ayuda.chm");
         }
     }
 }
